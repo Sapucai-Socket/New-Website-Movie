@@ -40,7 +40,19 @@
     $ npm init
     $ npm install --save firebase
     ```
-
+  - Vite
+    ```
+    $ npm create vite@latest
+    ```
+- React
+  - React Icons
+    ```
+    $ npm install react-icons
+    ```
+  - React Router Dom
+    ```
+    $ npm install react-router-dom
+    ```
 
 <h3 align="center">Linguages e Ferramentas que utilizaremos:</h3>
 
