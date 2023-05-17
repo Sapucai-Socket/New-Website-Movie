@@ -24,15 +24,6 @@
 
 ## ⚙️ Requerimentos
 - Node.JS
-    [Download](https://nodejs.org/pt-br/download)
-   - EJS(Dependência para Node.JS)
-      ```sh
-      $ npm install ejs
-      ```
-  - Express(Dependência para Node.JS)
-      ```sh
-      $ npm install express
-      ```
   - Morgan(Dependência para Node.JS)
       ```sh
       $ npm i morgan
