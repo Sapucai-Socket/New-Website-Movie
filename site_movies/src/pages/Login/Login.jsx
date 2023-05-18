@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithPopup, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 
-const auth = getAuth();
+//const auth = getAuth();
 const googleProvider = new GoogleAuthProvider();
 
 function Login() {

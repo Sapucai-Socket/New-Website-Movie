@@ -4,8 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import App from './App'
 import Home from './pages/Home/Home'
+import Login from './pages/Login/Login'
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
-
 
 import './pages/Home/Home.css'
 import './pages/Login/Login.css'
