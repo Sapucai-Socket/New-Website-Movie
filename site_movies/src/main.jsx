@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import App from './App'
 import Home from './pages/Home/Home'
+
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
@@ -11,7 +12,7 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 import './pages/Home/Home.css'
 import './pages/Login/Login.css'
 import './pages/Register/Register.css'
-
+import './components/Footer/Footer.css'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
