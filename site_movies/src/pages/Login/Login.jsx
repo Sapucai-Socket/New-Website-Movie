@@ -102,7 +102,7 @@ function Login() {
                             <p>Ainda não possui uma conta? <a href="/Register">Crie uma!</a></p>
 
                         </div>
-
+                        <br />
                         <div className="login_footer">
 
                             <button onClick={handleSignIn}>
