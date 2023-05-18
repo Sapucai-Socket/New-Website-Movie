@@ -57,7 +57,7 @@
 <h3 align="center">Linguages e Ferramentas que utilizaremos:</h3>
 
 <p align="center">
-  <a href="https://skillicons.dev">
+  <a href="">
     <img src="https://skillicons.dev/icons?i=figma,git,nodejs,js,html,css,react,firebase" />
   </a>
 </p>
