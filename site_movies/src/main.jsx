@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import App from './App'
 import Home from './pages/Home/Home'
+import Movie from './pages/Movie/Movie'
 
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
@@ -23,6 +24,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/movie/:id' element={<Movie />} />
         </Route>
       </Routes>
     </BrowserRouter>
