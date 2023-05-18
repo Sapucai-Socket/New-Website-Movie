@@ -11,7 +11,8 @@ function App() {
 
   return (
     <div className="App">
-      {(location.pathname !== '/login' && <Header />) && (location.pathname !== '/register' && <Header />)}
+      {(location.pathname !== '/login' && <Header />) && (location.pathname !== '/register' && <Header />)
+        && (location.pathname !== '/' && <Header />)}
       <Outlet />
       <Footer />
     </div>

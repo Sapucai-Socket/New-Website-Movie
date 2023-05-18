@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithPopup, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
-import { auth } from '../../firebase';
 
+const auth = getAuth();
 const googleProvider = new GoogleAuthProvider();
 
 function Login() {
