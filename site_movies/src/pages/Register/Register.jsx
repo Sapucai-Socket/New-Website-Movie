@@ -19,13 +19,19 @@ const Register = () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
-                console.log(`Sucessou! Você é o ${user.email}.\nPor favor, faça login.`);
-                alert(`Sucessou! Você é o ${user.email}.\nPor favor, faça login.`);
+                alert(`Sucesso! Você é o ${user.email}.\nPor favor, faça login.`);
+                navigate("/login");
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(`${errorCode}\n${errorMessage}`);
+                if (errorCode == 'auth/email-already-in-use') {
+                    alert('E-mail já registrado');
+                } else if (errorCode == 'auth/weak-password') {
+                    alert('A senha deve conter no mínimo 6 caracteres');
+                } else {
+                    alert(`${errorCode}\n${errorMessage}`);
+                }
             });
     }
 

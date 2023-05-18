@@ -51,7 +51,15 @@ function Login() {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(error);
+                if (errorCode == 'auth/user-not-found') {
+                    alert('Usuário não encontrado');
+                } else if (errorCode == 'auth/wrong-password') {
+                    alert('Senha incorreta');
+                } else if (errorCode == 'auth/too-many-requests') {
+                    alert('Conta bloqueada temporariamente devido ao grande número de acessos\nTente novamente mais tarde');
+                } else {
+                    alert(`${errorCode}\n${errorMessage}`);
+                }
 
             });
 
