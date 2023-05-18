@@ -8,6 +8,8 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 
 import './pages/Home/Home.css'
+import './pages/Login/Login.css'
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -16,6 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route element={<App />}>
           <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
         </Route>
       </Routes>
     </BrowserRouter>
