@@ -70,7 +70,7 @@ function Login() {
             <div className="mayn-layout">
                 <div className="header-login">
                     <div className="logo">
-                        <a href="#">
+                        <a href="/">
                             <img src="./public/images/cine.png" alt="" />
                         </a>
                     </div>
@@ -110,9 +110,9 @@ function Login() {
                             <p>Ainda não possui uma conta? <a href="/register">Crie uma!</a></p>
 
                         </div>
-
+                        
                         <div className="login_footer">
-
+                            <br></br>
                             <button onClick={handleSignIn}>
                                 <ol class="googleSubmit">
                                     <div class="googleImg"><i className="fa-brands fa-google"></i></div>
