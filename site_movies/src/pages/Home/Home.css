@@ -1,0 +1,18 @@
+body {
+    line-height: 1.5;
+    font-family: 'Istok Web', sans-serif;
+    height: 100vh;
+    justify-self: center;
+    align-items: center;
+    background: #0d0d0d;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    background: #0d0d0d;
+}

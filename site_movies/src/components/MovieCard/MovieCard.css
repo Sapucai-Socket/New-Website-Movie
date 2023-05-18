@@ -1,0 +1,109 @@
+.wrapper-content{
+    background: #0d0d0d;
+    margin: 0 auto;
+    width: 1000px;
+}
+
+.lista{
+    padding: 10px;
+    color: transparent;
+    margin: 0 auto;
+}
+
+
+.lista h2{
+    color: #f2efea;
+    font-size: 24px;
+    padding: 5px;
+}
+
+.lista .title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.lista .title a{
+    color:#f2efea;
+    padding: 3px;
+    margin: 2px;
+    border: none;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.lista .title a:hover{
+    color: #504f4f;
+    transition: 0.2s;
+}
+
+.lista .movie-container h5{
+    color: #f2efea;
+    padding: 10px;
+}
+
+.lista .movie-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+div.movie-card {
+    text-align: center;
+    padding: 10px;
+    width: 150px;
+    border-radius: 5px;
+    margin: 5px;  
+    color: #0d0d0d;
+}
+
+div.movie-card:hover{
+    color: #f2efea;
+    cursor: pointer;
+    box-shadow: 0px 0px 60px 2px rgba(255, 255, 255, 0.057);
+    transition: 0.4s;
+    
+    #star:hover {
+        display: block;
+    }
+}
+
+div.movie-card img{
+    border-radius: 7px;
+}
+
+div.movie-card h2 {
+    font-size: 13px;
+    text-decoration: none;
+}
+
+div.movie-card a{
+    color: #aab1c0;
+    border-radius: 5px;
+    text-decoration: none;
+}
+div.movie-card a:hover{
+    border: #dfe5f3;
+    color: #dfe5f3;;
+}
+
+div.movie-card {
+    color: #f2efea;
+    cursor: pointer;
+    font-style: normal;
+}
+
+div.movie-card img {
+    width: 100%;
+}
+
+div.movie-card #star {
+    display: none;
+}
+
+div.movie-card:hover #star {
+    display: block;
+    transition: 0.2s;
+}
+
