@@ -94,6 +94,19 @@ nav ol li a:not(#loginIconPadding, #userIconPadding):hover::after {
     transform: scaleX(1);
 }
 
+.dropdown-menu {
+    display: none;
+    position: relative;
+    top: calc(100% + 10px);
+    left: 0;
+    margin-top: 10px;
+    background:#1c1c1c;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
 /*Imagem Log In*/
 #loginIcon {
     width: 55px;
@@ -105,6 +118,8 @@ nav ol li a:not(#loginIconPadding, #userIconPadding):hover::after {
 #loginIcon:hover {
     transition: 0.3s;
     border: 2px solid #557373;
+    box-shadow: 0px 0px 20px 2px rgba(255, 255, 255, 0.251);
+    transition: 0.4s;
 }
 
 /*Imagem Usuário*/
