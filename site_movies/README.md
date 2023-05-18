@@ -53,6 +53,10 @@
     ```
     $ npm install react-router-dom
     ```
+  - Font Awesome
+    ```
+    $ npm install --save font-awesome
+    ```
 
 <h3 align="center">Linguages e Ferramentas que utilizaremos:</h3>
 

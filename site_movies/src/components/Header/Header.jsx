@@ -30,7 +30,7 @@ function Header(){
       </li>
       <li>
         <a href="/login" id="loginIconPadding">
-          <img src="/public/loginIcon.svg" alt="svg" id="loginIcon" />
+          <img src="/loginIcon.svg" alt="svg" id="loginIcon" />
         </a>
       </li>
     </ol>
