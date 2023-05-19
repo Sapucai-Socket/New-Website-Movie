@@ -66,8 +66,7 @@ const Home = () => {
                         <a href="#">Ver Lista</a>
                     </div>
                     <div className="movie-container">
-                        {topMovies.length === 0 && <p>Carregando...</p>}
-                        {topMovies.length > 0 && topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+                    {topMovies.length > 0 && topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} type={0}/>)}
 
                     </div>
                 </div>
