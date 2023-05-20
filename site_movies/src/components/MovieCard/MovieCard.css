@@ -1,11 +1,11 @@
 .wrapper-content{
     background: #0d0d0d;
     margin: 0 auto;
-    width: 1000px;
+    width: 950px;
 }
 
 .lista{
-    padding: 10px;
+    padding: 0px;
     color: transparent;
     margin: 0 auto;
 }
@@ -13,8 +13,10 @@
 
 .lista h2{
     color: #f2efea;
-    font-size: 24px;
+    font-size: 20px;
     padding: 5px;
+    text-decoration: none;
+    font-weight: lighter;
 }
 
 .lista .title {
@@ -37,6 +39,14 @@
     transition: 0.2s;
 }
 
+.lista hr{
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #333, #ccc, #333);
+    margin-bottom: 15px;
+}
+
 .lista .movie-container h5{
     color: #f2efea;
     padding: 10px;
@@ -45,37 +55,107 @@
 .lista .movie-container{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0px -10px;
 }
 
-
+a {
+    text-decoration: none;
+}
 
 div.movie-card {
+    position: relative;
     text-align: center;
-    padding: 10px;
-    width: 150px;
+    padding: 2px;
+    width: 151px;
     border-radius: 5px;
     margin: 5px;  
     color: #0d0d0d;
+    color: #f2efea;
+    cursor: pointer;
+    font-style: normal;
+    text-decoration: none;
 }
 
+/*
 div.movie-card:hover{
     color: #f2efea;
     cursor: pointer;
     box-shadow: 0px 0px 60px 2px rgba(255, 255, 255, 0.057);
-    transition: 0.4s;
-    
-    #star:hover {
-        display: block;
-    }
-}
+    transition: 0.4s ease;
+}*/
 
-div.movie-card img{
+.movie-cardPoster {
+    position: relative;
+    overflow: hidden;
     border-radius: 7px;
+    width: 100%;
 }
 
-div.movie-card h2 {
+.movie-card .movie-cardPoster .movie-cardInfo{
+    text-decoration: none;
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #f2efea;
+    padding: 10px;
+    opacity: 0;
+    transition: bottom 0.3s ease, opacity 0.3s ease;
+}
+
+.movie-cardPoster:hover .movie-cardInfo{
+    bottom: 0;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.movie-cardPoster:hover {
+    box-shadow: 0px 0px 60px 7px rgba(255, 255, 255, 0.125);
+    transition: 0.4s ease;
+}
+
+.movie-card .movie-cardPoster img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+.movieTitle h2{
+    font-size: 12px;
+    text-align: left;
+    text-decoration: none;
+}
+
+.movie-cardInfo p {
+    font-size: 12px;
+    text-align: left;
+    text-decoration: none;
+    font-style: normal;
+    margin: 0;
+}
+
+.movie-card .movie-cardInfop {
+    display: flex;  
+    align-items: center;
+}
+
+.movie-card .movie-cardInfo p svg {
+    margin-right: 5px;
+}
+
+/*
+#movieTitle {
     font-size: 13px;
     text-decoration: none;
+    display: none;
+}
+
+div.movie-card:hover #movieTitle{
+    display: block;
+    transition: 0.2s;
 }
 
 div.movie-card a{
@@ -88,16 +168,6 @@ div.movie-card a:hover{
     color: #dfe5f3;;
 }
 
-div.movie-card {
-    color: #f2efea;
-    cursor: pointer;
-    font-style: normal;
-}
-
-div.movie-card img {
-    width: 100%;
-}
-
 div.movie-card #star {
     display: none;
 }
@@ -105,5 +175,5 @@ div.movie-card #star {
 div.movie-card:hover #star {
     display: block;
     transition: 0.2s;
-}
+}*/
 

@@ -13,6 +13,15 @@ body {
     box-sizing: border-box;
 }
 
-.container {
+.container{
     background: #0d0d0d;
+}
+
+.welcomeUser{
+    color: #f2efea;
+    font-weight: lighter;
+}
+
+#signedOut{
+    display: none;
 }

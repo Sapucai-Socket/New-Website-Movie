@@ -1,3 +1,9 @@
 .App {
+    line-height: 1.5;
+    font-family: 'Raleway', sans-serif;
+    font-weight: lighter;
+    height: 100vh;
+    justify-self: center;
+    align-items: center;
     background: #0d0d0d;
 }

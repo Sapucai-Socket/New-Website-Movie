@@ -47,16 +47,16 @@ const Home = () => {
     return (
         <div className="container">
             <Header user={AuthUser} />
-            <div style={{ textAlign: "center" }}>
+            <div className='welcomeUser' style={{ textAlign: "center" }}>
                 {AuthUser ?
                     <>
                         
-                        <h4>Name: {AuthUser.displayName}</h4>
+                        <h1>Bem-Vindo! <a href=''>{AuthUser.displayName}</a>. Aqui está o que temos assistido...</h1>
                         <p>{`Signed In as ${AuthUser.email}`}</p>
                         <button onClick={userSignOut}>Sign Out</button>
                     </>
                     :
-                    <p>Signed Out</p>
+                    <p id='signedOut'>Signed Out</p>
                 }
             </div>
             <div className="wrapper-content">
@@ -65,6 +65,7 @@ const Home = () => {
                         <h2>Populares na Ciné</h2>
                         <a href="#">Ver Lista</a>
                     </div>
+                    <hr></hr>
                     <div className="movie-container">
                     {topMovies.length > 0 && topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} type={0}/>)}
 

@@ -1,10 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Istok+Web&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
 
 body {
     line-height: 1.5;
-    font-family: 'Istok Web', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-weight: lighter;
     height: 100vh;
     justify-self: center;
     align-items: center;
@@ -19,7 +20,7 @@ body {
 
 .wrapper-header {
     margin: 0 auto;
-    width: 1000px;
+    width: 950px;
 }
 
 nav {
@@ -30,7 +31,7 @@ nav {
     position: relative;
     justify-content: space-around;
     text-align: center;
-    padding: 15px 30px;
+    padding: 15px 0px;
     align-items: center;
 }
 
@@ -90,7 +91,7 @@ nav ol li a::after {
     transition: transform 0.2s ease-in-out;
 }
 
-nav ol li a:not(#loginIconPadding, #userIconPadding):hover::after {
+nav ol li a:not(#userIconPadding, .usuarioCadastrado):hover::after {
     transform: scaleX(1);
 }
 
@@ -107,31 +108,31 @@ nav ol li a:not(#loginIconPadding, #userIconPadding):hover::after {
     display: block;
 }
 
-/*Imagem Log In*/
-#loginIcon {
+/*Imagem Log In / Imagem do Usuário*/
+.usuarioCadastrado{
     width: 55px;
     border-radius: 50%;
-    margin-right: 5px;
-    padding: 10px;
 }
 
-#loginIcon:hover {
-    transition: 0.3s;
-    border: 2px solid #557373;
+#userIconCadastrado{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.usuarioCadastrado:hover{ 
     box-shadow: 0px 0px 20px 2px rgba(255, 255, 255, 0.251);
     transition: 0.4s;
 }
 
-/*Imagem Usuário*/
 #userIcon {
     width: 55px;
     border-radius: 50%;
-    margin-right: 5px;
-    padding: 1px;
+    padding: 10px;
 }
 
-#userIcon:hover {
-    cursor: pointer;
+#userIcon:hover{
+    border: 2px solid #557373;
     box-shadow: 0px 0px 20px 2px rgba(255, 255, 255, 0.251);
     transition: 0.4s;
 }
