@@ -91,7 +91,7 @@ nav ol li a::after {
     transition: transform 0.2s ease-in-out;
 }
 
-nav ol li a:not( #userNaoCadastrado, .usuarioIcon):hover::after {
+nav ol li a:not(#userNaoCadastrado, .usuarioIcon):hover::after {
     transform: scaleX(1);
 }
 
@@ -101,7 +101,7 @@ nav ol li a:not( #userNaoCadastrado, .usuarioIcon):hover::after {
     top: calc(100% + 10px);
     left: 0;
     margin-top: 10px;
-    background:#1c1c1c;
+    background: #1c1c1c;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -109,18 +109,18 @@ nav ol li a:not( #userNaoCadastrado, .usuarioIcon):hover::after {
 }
 
 /*Imagem Log In / Imagem do Usuário*/
-.usuarioIcon{
+.usuarioIcon {
     width: 55px;
     border-radius: 50%;
 }
 
-#userIconCadastrado{
+#userIconCadastrado {
     width: 100%;
     object-fit: cover;
     border-radius: 50%;
 }
 
-.usuarioIcon:hover{ 
+.usuarioIcon:hover {
     box-shadow: 0px 0px 20px 2px rgba(255, 255, 255, 0.251);
     transition: 0.4s;
 }
@@ -132,7 +132,7 @@ nav ol li a:not( #userNaoCadastrado, .usuarioIcon):hover::after {
     object-fit: cover;
 }
 
-#userNaoCadastrado:hover{
+#userNaoCadastrado:hover {
     border: 2px solid #557373;
     transition: 0.4s;
 }
@@ -302,5 +302,83 @@ input[type="checkbox"] {
     #check:checked~nav ol li:nth-child(4) {
         transform: translateX(0);
         opacity: 1;
+    }
+}
+
+.mySlides {
+    display: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 850px;
+    position: relative;
+    margin: auto;
+    border-radius: 7px;
+}
+
+.slideshow-container img {
+    width: 100%;
+    opacity: 0.9;
+    background-color: #0d0d0d;
+    border-radius: 7px;
+    /* Adiciona o sobreamento */
+}
+
+.slideshow-container .active {
+    filter: grayscale(8%);
+    background-color: transparent;
+    box-shadow: none;
+}
+
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+    .text {
+        font-size: 11px
     }
 }

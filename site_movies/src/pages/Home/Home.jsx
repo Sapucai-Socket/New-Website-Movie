@@ -1,16 +1,58 @@
-import React from 'react';
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import MovieCard from "../../components/MovieCard/MovieCard";
-import { auth } from '../../firebase';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { auth } from "../../firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import Header from "../../components/Header/Header";
-
 
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
+const imageUrl = import.meta.env.VITE_IMG;
+
+const Slideshow = ({ topMovies }) => {
+    const [slideIndex, setSlideIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setSlideIndex((prevIndex) => (prevIndex + 1) % topMovies.length);
+        }, 5000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [topMovies]);
+
+    return (
+        <div className="slideshow-container">
+            {topMovies.length > 0 &&
+                topMovies.map((movie, index) => (
+                    <div
+                        key={movie.id}
+                        className={`carousel ${index === slideIndex ? "active" : ""}`}
+                        style={{
+                            display: index === slideIndex ? "block" : "none",
+                            position: "relative",
+                        }}
+                    >
+                        <div className="numbertext">
+                            {index + 1} / {topMovies.length}
+                        </div>
+                        <img
+                            src={imageUrl + movie.backdrop_path}
+                            style={{
+                                width: "100%",
+                                filter: index === slideIndex ? "brightness(50%)" : "none",
+                            }}
+                            alt="Movie Backdrop"
+                        />
+                    </div>
+                ))}
+        </div>
+    );
+};
 
 const Home = () => {
     const [topMovies, setTopMovies] = useState([]);
+    const [authUser, setAuthUser] = useState(null);
 
     const getTopRatedMovies = async (url) => {
         const res = await fetch(url);
@@ -23,41 +65,47 @@ const Home = () => {
         getTopRatedMovies(topRatedUrl);
     }, []);
 
-    const [AuthUser, setAuthUser] = useState(null);
-
     useEffect(() => {
-        const listen = onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setAuthUser(user);
             } else {
                 setAuthUser(null);
             }
-        })
+        });
+
         return () => {
-            listen();
-        }
-    }, [])
+            unsubscribe();
+        };
+    }, []);
 
     const userSignOut = () => {
-        signOut(auth).then(() => {
-            alert('Signed out sucessfully!')
-        }).catch(error => console.log(error))
-    }
+        signOut(auth)
+            .then(() => {
+                alert("Signed out successfully!");
+            })
+            .catch((error) => console.log(error));
+    };
 
     return (
         <div className="container">
-            <Header user={AuthUser} />
-            <div className='welcomeUser' style={{ textAlign: "center" }}>
-                {AuthUser ?
+            <Header user={authUser} />
+            <Slideshow topMovies={topMovies} />
+            <div className="welcomeUser" style={{ textAlign: "center" }}>
+                {authUser ? (
                     <>
-                        
-                        <h1>Bem-Vindo! <a href=''>{AuthUser.displayName}</a>. Aqui está o que temos assistido...</h1>
-                        <p>{`Signed In as ${AuthUser.email}`}</p>
-                        <button onClick={userSignOut}>Sign Out</button>
+                        <div style={{ textAlign: "center" }}>
+                            <h1>
+                                Bem-Vindo! <a href="">{authUser.displayName}</a>. Aqui está o que temos assistido...
+                            </h1>
+                            <h4>Name: {authUser.displayName}</h4>
+                            <p>{`Signed In as ${authUser.email}`}</p>
+                            <button onClick={userSignOut}>Sign Out</button>
+                        </div>
                     </>
-                    :
-                    <p id='signedOut'>Signed Out</p>
-                }
+                ) : (
+                    <p id="signedOut">Signed Out</p>
+                )}
             </div>
             <div className="wrapper-content">
                 <div className="lista">
@@ -65,10 +113,12 @@ const Home = () => {
                         <h2>Populares na Ciné</h2>
                         <a href="#">Ver Lista</a>
                     </div>
-                    <hr></hr>
+                    <hr />
                     <div className="movie-container">
-                    {topMovies.length > 0 && topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} type={0}/>)}
-
+                        {topMovies.length > 0 &&
+                            topMovies.map((movie) => (
+                                <MovieCard key={movie.id} movie={movie} type={0} />
+                            ))}
                     </div>
                 </div>
             </div>
@@ -77,4 +127,3 @@ const Home = () => {
 };
 
 export default Home;
-

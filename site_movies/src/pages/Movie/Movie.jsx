@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MovieCard from "../../components/MovieCard/MovieCard";
-const imageUrl = import.meta.env.VITE_IMG
-
+const imageUrl = import.meta.env.VITE_IMG;
 
 import "./Movie.css";
 
@@ -36,9 +35,9 @@ const Movie = () => {
     <div className="movie-page">
       {movie && (
         <>
-        <MovieCard movie={movie} showLink={false} type={1}/>
-          <img src={imageUrl + movie.backdrop_path} alt={movie.title} /> 
-          <img id="movieImg" src={imageUrl + movie.poster_path} alt={movie.title} />
+          <MovieCard movie={movie} showLink={false} type={1} />
+          <img src={imageUrl + movie.backdrop_path} alt={movie.title} style={{ maxWidth: "20%", height: "auto" }} />
+          <img id="movieImg" src={imageUrl + movie.poster_path} alt={movie.title} style={{ maxWidth: "10%", height: "auto" }} />
           <div id="bgColor"></div>
           <div className="infoPanel">
             <p id="movieTitle" className="Title">{movie.title}</p>
