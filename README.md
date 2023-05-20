@@ -5,32 +5,36 @@
   Projeto dedicado para a construção de um site de reviews de filme, com a principal finalidade de avaliar filmes e séries que estão circulando a internet. Esse projeto, elaborado a partir de um grupo de estudantes do curso de informática na disciplica de Práticas Profissionais III no Instituto Federal do Ceará (IFCE), consiste em estabelecermos uma experiência de mercado, trabalhando em conjunto e desenvolvendo o projeto como uma verdadeira equipe. Para podermos  entrar a fundo na realidade do mercado, foi realizado uma série de estudos, sprints e gerenciamento de reuniões nos principais meios de comunicações que o atual mercado exige, elaborando a melhor estratégia possível para o desenvolvimento do projeto.
   
   ## 🔎 Equipe: 
-<div style="display: flex; margin: auto;">
+<div style="display: flex; margin: auto;"  align="center">
   <a href="https://github.com/Valcler-Manoel">
     <img src="https://github.com/Valcler-Manoel.png?size=96" alt="Valcler-Manoel" width="96px" height="96px" />
-  </a>
-  <a href="https://github.com/Valcler-Manoel" target="_blank">
-    <img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" target="_blank">
   </a>
   <a href="https://github.com/nicolasmarcelino">
     <img src="https://github.com/nicolasmarcelino.png?size=96" alt="nicolasmarcelino" width="96px" height="96px" />
   </a>
-  <a href="https://github.com/nicolasmarcelino" target="_blank">
-    <img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" target="_blank">
-  </a>
   <a href="https://github.com/HenriqueAbn">
     <img src="https://github.com/HenriqueAbn.png?size=96" alt="HenriqueAbn" width="96px" height="96px" />
   </a>
-  <a href="https://github.com/HenriqueAbn" target="_blank">
-    <img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" target="_blank">
-  </a>
   <a href="https://github.com/lsaturnino">
     <img src="https://github.com/lsaturnino.png?size=96" alt="lsaturnino" width="96px" height="96px" />
+  </a>
+</div>
+
+<div style="display: flex; margin: auto;"  align="center">
+  <a href="https://github.com/Valcler-Manoel" target="_blank">
+    <img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" target="_blank">
+  </a>
+  <a href="https://github.com/nicolasmarcelino" target="_blank">
+    <img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" target="_blank">
+  </a>
+  <a href="https://github.com/HenriqueAbn" target="_blank">
+    <img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" target="_blank">
   </a>
   <a href="https://github.com/lsaturnino" target="_blank">
     <img src="https://img.shields.io/badge/-GitHub-%23333?style=for-the-badge&logo=github&logoColor=white" target="_blank">
   </a>
 </div>
+
 
 <br>
 </p>
