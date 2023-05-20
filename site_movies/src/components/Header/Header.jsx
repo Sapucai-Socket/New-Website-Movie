@@ -33,7 +33,7 @@ function Header({ user }) {
                         </li>
                         <li>
                             {user ?
-                                <a href="/perfil" className="usuarioCadastrado">
+                                <a href="/perfil" className="usuarioIcon">
                                    <img
                                     src={user.photoURL}
                                     alt={user.displayName}
@@ -44,8 +44,8 @@ function Header({ user }) {
                                 /> 
                                 </a>
                                  :
-                                <a href="/login" className="userIconPadding">
-                                    <img src="/loginIcon.svg" alt="svg" id="userIcon" />
+                                <a href="/login" className="usuarioIcon">
+                                    <img src="/loginIcon.svg" alt="svg" id="userNaoCadastrado" />
                                 </a>
                             }
                         </li>

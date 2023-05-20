@@ -7,3 +7,24 @@
     align-items: center;
     background: #0d0d0d;
 }
+
+/*Scrollbar*/
+::-webkit-scrollbar {
+    width: 1em;
+}
+
+::-webkit-scrollbar-track {
+    background: none;
+    margin-block: .5em;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #504f4f;
+    border-radius: 100vw;
+    border: #0d0d0d solid 4px;
+    padding: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #212121;
+}

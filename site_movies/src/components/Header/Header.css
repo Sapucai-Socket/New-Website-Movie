@@ -91,7 +91,7 @@ nav ol li a::after {
     transition: transform 0.2s ease-in-out;
 }
 
-nav ol li a:not(#userIconPadding, .usuarioCadastrado):hover::after {
+nav ol li a:not( #userNaoCadastrado, .usuarioIcon):hover::after {
     transform: scaleX(1);
 }
 
@@ -109,7 +109,7 @@ nav ol li a:not(#userIconPadding, .usuarioCadastrado):hover::after {
 }
 
 /*Imagem Log In / Imagem do Usuário*/
-.usuarioCadastrado{
+.usuarioIcon{
     width: 55px;
     border-radius: 50%;
 }
@@ -120,20 +120,20 @@ nav ol li a:not(#userIconPadding, .usuarioCadastrado):hover::after {
     border-radius: 50%;
 }
 
-.usuarioCadastrado:hover{ 
+.usuarioIcon:hover{ 
     box-shadow: 0px 0px 20px 2px rgba(255, 255, 255, 0.251);
     transition: 0.4s;
 }
 
-#userIcon {
+#userNaoCadastrado {
     width: 55px;
     border-radius: 50%;
     padding: 10px;
+    object-fit: cover;
 }
 
-#userIcon:hover{
+#userNaoCadastrado:hover{
     border: 2px solid #557373;
-    box-shadow: 0px 0px 20px 2px rgba(255, 255, 255, 0.251);
     transition: 0.4s;
 }
 
