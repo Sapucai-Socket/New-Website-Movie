@@ -44,6 +44,10 @@ const Slideshow = ({ topMovies }) => {
                             }}
                             alt="Movie Backdrop"
                         />
+                         <div id="description" className="info descriptionsSlider">
+                            <p>{movie.overview}</p>
+                        </div>
+                        <MovieCard key={movie.id} movie={movie} type={0} />
                     </div>
                 ))}
         </div>

@@ -146,6 +146,12 @@ div.movie-card:hover{
     margin-right: 5px;
 }
 
+.descriptionsSlider p {
+    color: #ccc;
+    font-size: 14px;
+    margin: 0;
+    text-align: justify;
+  }
 /*
 #movieTitle {
     font-size: 13px;
