@@ -47,7 +47,7 @@ const Slideshow = ({ topMovies }) => {
                          <div id="description" className="info descriptionsSlider">
                             <p>{movie.overview}</p>
                         </div>
-                        <MovieCard key={movie.id} movie={movie} type={0} />
+                        <MovieCard key={movie.id} movie={movie} type={0} carussel={0}/>
                     </div>
                 ))}
         </div>
@@ -121,7 +121,7 @@ const Home = () => {
                     <div className="movie-container">
                         {topMovies.length > 0 &&
                             topMovies.map((movie) => (
-                                <MovieCard key={movie.id} movie={movie} type={0} />
+                                <MovieCard key={movie.id} movie={movie} type={0} carussel={1}/>
                             ))}
                     </div>
                 </div>
