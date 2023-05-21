@@ -15,18 +15,28 @@ const MovieCard = ({ movie, showLink = true, type = 1, carussel = 0 }) => {
         </Link>
       ) : (
         <>
-          <div className="movie-cardPoster">
-            {carussel !== 0 && (
-              <img src={imageUrl + (type === 1 ? movie.backdrop_path : movie.poster_path)} alt={movie.title} />
-            )}
-            <div className="movie-cardInfo">
-              <p id="star">
-                <FaStar /> {movie.vote_average}
-              </p>
+          {carussel !== 0 ? (
+            <Link to={`/movie/${movie.id}`}>
+              <div className="movie-cardPoster">
+                <img src={imageUrl + (type === 1 ? movie.backdrop_path : movie.poster_path)} alt={movie.title} />
+                <div className="movie-cardInfo">
+                  <p id="star">
+                    <FaStar /> {movie.vote_average}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          ) : (
+            <div className="movie-cardPoster">
+              <div className="movie-cardInfo">
+                <p id="star">
+                  <FaStar /> {movie.vote_average}
+                </p>
+              </div>
             </div>
-          </div>
+          )}
           <div className="movieTitle">
-            <h2>{movie.title}</h2>
+            
           </div>
         </>
       )}
