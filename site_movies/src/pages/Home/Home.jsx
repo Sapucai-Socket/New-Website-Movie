@@ -3,6 +3,7 @@ import MovieCard from "../../components/MovieCard/MovieCard";
 import { auth } from "../../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import Header from "../../components/Header/Header";
+import { Link } from "react-router-dom";
 
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -44,10 +45,10 @@ const Slideshow = ({ topMovies }) => {
                             }}
                             alt="Movie Backdrop"
                         />
-                         <div id="description" className="info descriptionsSlider">
+                         <div id="descriptionSlide">
                             <p>{movie.overview}</p>
+                            <MovieCard key={movie.id} movie={movie} type={0} carussel={0}/>
                         </div>
-                        <MovieCard key={movie.id} movie={movie} type={0} carussel={0}/>
                     </div>
                 ))}
         </div>
