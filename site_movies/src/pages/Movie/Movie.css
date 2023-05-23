@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Sora&display=swap');
+
+.movie-page {
+    margin: 0 auto;
+    width: 950px;
+    color: #f2efea;
+    font-weight: lighter;
+}
+
+#movieBackground {
+    position: relative;
+    width: 950px;
+    margin: 0 auto;
+    background: linear-gradient(360deg, #0D0D0D 28.45%, rgba(13, 13, 13, 0) 59.33%);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 7px;
+}
+
+.headMovie{
+    color: #f2efea;
+}
+
+#infoList {
+    list-style: none;
+    display: flex;
+    margin: auto 0;
+    align-items: top;
+}
+
+#infoList li{
+    padding: 5px;
+}
+
+#movieImg {
+    width: 215.65px;
+    border-radius: 7px;
+    z-index: 3;
+    margin: 5px;
+    padding: 5px;
+    top: 0;
+}
+
+#movieTitle {
+    font-weight: bold;
+    font-size: 30px;
+    width: 457px;
+}
+#movieTagline {
+    font-weight: 500;
+    font-size: 18px;
+    font-family: 'Sora', sans-serif;
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#description{
+    width: 390px;
+    text-align: justify;
+}
+
+.movieActions{
+    box-sizing: border-box;
+    width: 230px;
+    height: 390px;
+    background: #0D0D0D;
+    border: 3px solid #615B5B;
+    box-shadow: 27px 26px 100px 10px #000000, -27px -26px 100px 10px rgba(242, 239, 234, 0.04);
+    border-radius: 7px;
+}

@@ -45,6 +45,13 @@
 
 <br>
 
+## ✅ Para Começar
+      ```sh
+      $ npm run dev
+      ```
+
+<br>
+
 ## ⚙️ Requerimentos
 - Node.JS
   - Morgan(Dependência para Node.JS)
@@ -71,6 +78,9 @@
   - React Icons
     ```
     $ npm install react-icons
+    $ npm i --save @fortawesome/fontawesome-svg-core
+    $ npm install --save @fortawesome/free-solid-svg-icons
+    $ npm install --save @fortawesome/react-fontawesome
     ```
   - React Router Dom
     ```
