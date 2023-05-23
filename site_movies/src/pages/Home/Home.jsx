@@ -4,6 +4,8 @@ import { auth } from "../../firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -87,13 +89,14 @@ const Home = () => {
     const userSignOut = () => {
         signOut(auth)
             .then(() => {
-                alert("Desconectado com sucesso!");
+                toast.success("Desconectado com sucesso!");
             })
             .catch((error) => console.log(error));
     };
 
     return (
         <div className="container">
+            <ToastContainer />
             <Header user={authUser} />
             <Slideshow topMovies={topMovies} />
             <div className="welcomeUser" style={{ textAlign: "center" }}>

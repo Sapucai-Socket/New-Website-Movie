@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithPopup, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const auth = getAuth();
 const googleProvider = new GoogleAuthProvider();
@@ -22,47 +24,42 @@ function Login() {
                 navigate('/'); // navigate to the Home page
             })
             .catch(error => {
-                console.log(error)
+                console.log(error);
             });
     }
 
-    // botão sair
     const handleSignOut = () => {
-        signOut(auth).then((result) => {
-            // Sign-out successful.
-            console.log(result)
-            setUser(null)
-        }).catch((error) => {
-            // An error happened.
-            console.log(error);
-        });
+        signOut(auth)
+            .then(() => {
+                console.log("Desconectado com sucesso!");
+                setUser(null);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     const signIn = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Signed in 
                 const user = userCredential.user;
                 console.log(userCredential);
                 navigate("/");
-                // ...
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                if (errorCode == 'auth/user-not-found') {
-                    alert('Usuário não encontrado');
-                } else if (errorCode == 'auth/wrong-password') {
-                    alert('Senha incorreta');
-                } else if (errorCode == 'auth/too-many-requests') {
-                    alert('Conta bloqueada temporariamente devido ao grande número de acessos\nTente novamente mais tarde');
+                if (errorCode === 'auth/user-not-found') {
+                    toast.error('Usuário não encontrado');
+                } else if (errorCode === 'auth/wrong-password') {
+                    toast.error('Senha incorreta');
+                } else if (errorCode === 'auth/too-many-requests') {
+                    toast.error('Conta bloqueada temporariamente devido ao grande número de acessos. Tente novamente mais tarde');
                 } else {
-                    alert(`${errorCode}\n${errorMessage}`);
+                    toast.error(`${errorCode}\n${errorMessage}`);
                 }
-
             });
-
     }
 
     return (
@@ -75,7 +72,6 @@ function Login() {
                         </a>
                     </div>
                 </div>
-
 
                 <div className="login_body">
                     <div className="login_box">
@@ -103,12 +99,11 @@ function Login() {
                             </div>
                             <div className="help">
                                 <p>Precisa de <a href="#">ajuda?</a></p>
-
                             </div>
                         </div>
+
                         <div className="sign_up">
                             <p>Ainda não possui uma conta? <a href="/register">Crie uma!</a></p>
-
                         </div>
 
                         <div className="login_footer">
@@ -119,11 +114,12 @@ function Login() {
                                     <p>Login através do Google</p>
                                 </ol>
                             </button>
-
                         </div>
                     </div>
                 </div>
             </div>
+
+            <ToastContainer />
         </body>
     );
 }
