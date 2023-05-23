@@ -46,9 +46,9 @@
 <br>
 
 ## ✅ Para Começar
-      ```sh
+      
       $ npm run dev
-      ```
+      
 
 <br>
 
