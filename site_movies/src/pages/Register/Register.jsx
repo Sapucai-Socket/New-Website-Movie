@@ -44,7 +44,7 @@ const Register = () => {
                         <div className="header-login">
                             <div className="logo">
                                 <a href="/">
-                                    <img src="./public/images/cine.png" alt="" />
+                                    <img src="/images/cine.png" alt="" />
                                 </a>
                             </div>
                         </div>

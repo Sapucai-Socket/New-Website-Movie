@@ -71,7 +71,7 @@ function Login() {
                 <div className="header-login">
                     <div className="logo">
                         <a href="/">
-                            <img src="./public/images/cine.png" alt="" />
+                            <img src="/images/cine.png" alt="" />
                         </a>
                     </div>
                 </div>
@@ -82,11 +82,11 @@ function Login() {
                         <h2>Entrar</h2>
                         <form onSubmit={signIn}>
                             <div className="input_box">
-                                <input required type='email' placeholder='Enter your e-mail' value={email} onChange={(e) => setEmail(e.target.value)} />
+                                <input required type='email' placeholder='Digite seu e-mail' value={email} onChange={(e) => setEmail(e.target.value)} />
                             </div>
 
                             <div className="input_box">
-                                <input required type='password' placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                                <input required type='password' placeholder='Senha' value={password} onChange={(e) => setPassword(e.target.value)} />
                             </div>
 
                             <div>
@@ -110,7 +110,7 @@ function Login() {
                             <p>Ainda não possui uma conta? <a href="/register">Crie uma!</a></p>
 
                         </div>
-                        
+
                         <div className="login_footer">
                             <br></br>
                             <button onClick={handleSignIn}>

@@ -34,16 +34,17 @@ function Header({ user }) {
                         <li>
                             {user ?
                                 <a href="/perfil" className="usuarioIcon">
-                                   <img
-                                    src={user.photoURL}
-                                    alt={user.displayName}
-                                    id="userIconCadastrado"
-                                    onError={(e) => {
-                                        console.log('Error loading image:', e.target.src);
-                                    }}
-                                /> 
+                                    <img
+                                        src={user.photoURL}
+                                        referrerPolicy="no-referrer"
+                                        alt={user.displayName}
+                                        id="userIconCadastrado"
+                                        onError={(e) => {
+                                            console.log('Error loading image:', e.target.src);
+                                        }}
+                                    />
                                 </a>
-                                 :
+                                :
                                 <a href="/login" className="usuarioIcon">
                                     <img src="/loginIcon.svg" alt="svg" id="userNaoCadastrado" />
                                 </a>

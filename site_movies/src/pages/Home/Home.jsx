@@ -15,7 +15,7 @@ const Slideshow = ({ topMovies }) => {
     useEffect(() => {
         const interval = setInterval(() => {
             setSlideIndex((prevIndex) => (prevIndex + 1) % topMovies.length);
-        }, 5000);
+        }, 5000); //Definir tempo do carousel
 
         return () => {
             clearInterval(interval);
@@ -45,9 +45,9 @@ const Slideshow = ({ topMovies }) => {
                             }}
                             alt="Movie Backdrop"
                         />
-                         <div id="descriptionSlide">
+                        <div id="descriptionSlide">
                             <p>{movie.overview}</p>
-                            <MovieCard key={movie.id} movie={movie} type={0} carussel={0}/>
+                            <MovieCard key={movie.id} movie={movie} type={0} carussel={0} />
                         </div>
                     </div>
                 ))}
@@ -87,7 +87,7 @@ const Home = () => {
     const userSignOut = () => {
         signOut(auth)
             .then(() => {
-                alert("Signed out successfully!");
+                alert("Desconectado com sucesso!");
             })
             .catch((error) => console.log(error));
     };
@@ -103,13 +103,13 @@ const Home = () => {
                             <h1>
                                 Bem-Vindo! <a href="">{authUser.displayName}</a>. Aqui está o que temos assistido...
                             </h1>
-                            <h4>Name: {authUser.displayName}</h4>
-                            <p>{`Signed In as ${authUser.email}`}</p>
-                            <button onClick={userSignOut}>Sign Out</button>
+                            <h4>Nome: {authUser.displayName}</h4>
+                            <p>{`Conectado como ${authUser.email}`}</p>
+                            <button onClick={userSignOut}>Desconectar</button>
                         </div>
                     </>
                 ) : (
-                    <p id="signedOut">Signed Out</p>
+                    <p id="signedOut">Desconectado</p>
                 )}
             </div>
             <div className="wrapper-content">
@@ -122,9 +122,10 @@ const Home = () => {
                     <div className="movie-container">
                         {topMovies.length > 0 &&
                             topMovies.map((movie) => (
-                                <MovieCard key={movie.id} movie={movie} type={0} carussel={1}/>
+                                <MovieCard key={movie.id} movie={movie} type={0} carussel={1} />
                             ))}
                     </div>
+                    <br></br><br></br>
                 </div>
             </div>
         </div>
