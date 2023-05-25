@@ -1,80 +1,132 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import "./Perfil.css";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
+
+import { db } from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
+
 
 const Perfil = () => {
+    const [authUser, setAuthUser] = useState(null);
+    const [nome, setNome] = useState('');
+    const [descricao, setDescricao] = useState('');
+    const navigate = useNavigate();
+
+    const getNomeUsuario = async (uid) => {
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
+        const name = docSnap.data().nome;
+        setNome(name)
+        /*
+                if (docSnap.exists()) {
+                    console.log("Nome de usuário:", docSnap.data().nome);
+                } else {
+                  
+                    console.log("No such document!");
+                }
+                */
+    }
+
+    const getDescricao = async (uid) => {
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
+        const descricao = docSnap.data().descricao;
+        setDescricao(descricao)
+    }
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const uid = user.uid;
+                setAuthUser(uid);
+                getNomeUsuario(uid);
+                getDescricao(uid);
+            } else {
+                navigate('/login');
+            }
+        });
+    });
+
+
+
+
+
     return (
         <div>
-            <div class="profileContainer">
-                <div class="pfpImage">
+            <div className="profileContainer">
+                <div className="pfpImage">
                     <img
                         id="pfp"
                         src="https://pbs.twimg.com/profile_images/836420807085674497/fjDNEUsp_400x400.jpg"
                     />
                 </div>
                 <div>
-                    <h1 id="nomeUsuario">Clark Kent</h1>
-                    <i id="descUsuario">truth, justice and a better tomorrow.</i>
+                    <h1 id="nomeUsuario">{nome}</h1>
+                    <i id="descUsuario">{descricao}</i>
                 </div>
             </div>
-            <div class="otherUserInfos">
-                <div class="otherUserInfo">
-                    <span class="quantity">4</span>
+            <div className="otherUserInfos">
+                <div className="otherUserInfo">
+                    <span className="quantity">4</span>
                     <br />
-                    <span class="parameter">FILMES</span>
+                    <span className="parameter">FILMES</span>
                 </div>
-                <div class="vertical-line"></div>
+                <div className="vertical-line"></div>
 
-                <div class="otherUserInfo">
-                    <span class="quantity">23</span>
+                <div className="otherUserInfo">
+                    <span className="quantity">23</span>
                     <br />
-                    <span class="parameter">ESTE ANO</span>
+                    <span className="parameter">ESTE ANO</span>
                 </div>
-                <div class="vertical-line"></div>
+                <div className="vertical-line"></div>
 
-                <div class="otherUserInfo">
-                    <span class="quantity">3</span>
+                <div className="otherUserInfo">
+                    <span className="quantity">3</span>
                     <br />
-                    <span class="parameter">LISTAS</span>
+                    <span className="parameter">LISTAS</span>
                 </div>
-                <div class="vertical-line"></div>
-                <div class="otherUserInfo">
-                    <span class="quantity">1</span>
+                <div className="vertical-line"></div>
+                <div className="otherUserInfo">
+                    <span className="quantity">1</span>
                     <br />
-                    <span class="parameter">SEGUINDO</span>
+                    <span className="parameter">SEGUINDO</span>
                 </div>
-                <div class="vertical-line"></div>
+                <div className="vertical-line"></div>
 
-                <div class="otherUserInfo">
-                    <span class="quantity">4</span>
+                <div className="otherUserInfo">
+                    <span className="quantity">4</span>
                     <br />
-                    <span class="parameter">SEGUIDORES</span>
+                    <span className="parameter">SEGUIDORES</span>
                 </div>
             </div>
             <div id="favoritos">
                 <h2 id="favoritos-cabecalho">FILMES FAVORITOS</h2>
 
-                <div class="posterUserFavorites">
-                    <div class="flex-child">
+                <div className="posterUserFavorites">
+                    <div className="flex-child">
                         <a href="#">
                             <img
-                                class="filme-favorito"
+                                className="filme-favorito"
                                 src="https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"
                             />
                         </a>
                     </div>
 
-                    <div class="flex-child">
+                    <div className="flex-child">
                         <a href="#">
                             <img
-                                class="filme-favorito"
+                                className="filme-favorito"
                                 src="https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjYy00YzM1LWI4ZmQtMjIwYjFjNmI3ZGEwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg"
                             />
                         </a>
                     </div>
-                    <div class="flex-child">
+                    <div className="flex-child">
                         <a href="#">
                             <img
-                                class="filme-favorito"
+                                className="filme-favorito"
                                 src="https://image.tmdb.org/t/p/original/gmU7P3FzGFsl2wiSDhx9znZCNub.jpg"
                             />
                         </a>
@@ -87,7 +139,7 @@ const Perfil = () => {
                 <div id="filme-poster-avaliado">
                     <a href="#">
                         <img
-                            class="filme-avaliado"
+                            className="filme-avaliado"
                             src="https://image.tmdb.org/t/p/original/MbP1pIUKQcZaC1XCwSomuiLrva.jpg"
                         />
                     </a>

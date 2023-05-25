@@ -14,6 +14,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const imageUrl = import.meta.env.VITE_IMG;
 
 const Slideshow = ({ topMovies }) => {
+
     const [slideIndex, setSlideIndex] = useState(0);
 
     const goToPreviousSlide = () => {
@@ -76,6 +77,7 @@ const Slideshow = ({ topMovies }) => {
 const Home = () => {
     const [topMovies, setTopMovies] = useState([]);
     const [authUser, setAuthUser] = useState(null);
+
 
     const getTopRatedMovies = async (url) => {
         const res = await fetch(url);

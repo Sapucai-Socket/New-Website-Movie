@@ -10,7 +10,7 @@ const googleProvider = new GoogleAuthProvider();
 
 function Login() {
     const [user, setUser] = useState(null)
-
+    
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -109,8 +109,8 @@ function Login() {
                         <div className="login_footer">
                             <br></br>
                             <button onClick={handleSignIn}>
-                                <ol class="googleSubmit">
-                                    <div class="googleImg"><i className="fa-brands fa-google"></i></div>
+                                <ol className="googleSubmit">
+                                    <div className="googleImg"><i className="fa-brands fa-google"></i></div>
                                     <p>Login através do Google</p>
                                 </ol>
                             </button>
