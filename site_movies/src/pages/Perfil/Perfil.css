@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Istok+Web&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Istok+Web:wght@700&display=swap");
+
+.profileContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pfpImage {
+    margin-right: 50px;
+    margin-bottom: 25px;
+}
+
+#pfp {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+}
+
+#nomeUsuario {
+    font-family: "Istok Web", sans-serif;
+    font-weight: bolder;
+    color: white;
+}
+
+#descUsuario {
+    font-family: "Istok Web", sans-serif;
+    color: white;
+}
+
+.otherUserInfos {
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+
+.otherUserInfo {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.quantity {
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.vertical-line {
+    width: 1px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+}
+
+.posterUserFavorites {
+    display: flex;
+}
+
+.flex-child:not(:last-child) {
+    margin-right: 20px;
+}
+
+#favoritos {
+    color: white;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#favoritos-cabecalho {
+    border-bottom: 1px solid grey;
+    font-family: Arial, sans-serif;
+    font-size: medium;
+    font-weight: lighter;
+}
+
+.filme-favorito {
+    /* width | style | color */
+    border-radius: 5px;
+    border: 1px solid grey;
+    width: 154px;
+    height: 229px;
+}
+
+#secao-filmes-avaliados {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.filme-avaliado {
+    /* width | style | color */
+    border-radius: 5px;
+    border: 1px solid grey;
+    width: 154px;
+    height: 229px;
+}
+
+#avaliacoes-cabecalho {
+    color: white;
+    border-bottom: 1px solid grey;
+    font-family: Arial, sans-serif;
+    font-size: medium;
+    font-weight: lighter;
+}
+
+#filme-poster-avaliado {
+    float: left;
+}
+
+#infos-avaliacao {
+    overflow: hidden;
+    max-width: 890px;
+    color: white;
+}
+
+#titulo-filme-avaliado {
+    font-size: xx-large;
+    font-weight: bold;
+    margin-left: 30px;
+}
+
+#ano-filme-avaliado {
+    font-size: large;
+    margin-left: 15px;
+}
+
+#estrelas-filme-avaliado {
+    font-size: xx-large;
+    margin-left: 30px;
+}
+
+#review-filme-avaliado {
+    display: block;
+    margin-left: 30px;
+    font-size: large;
+}

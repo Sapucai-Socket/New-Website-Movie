@@ -16,7 +16,7 @@
     border-radius: 7px;
 }
 
-.headMovie{
+.headMovie {
     color: #f2efea;
 }
 
@@ -27,7 +27,7 @@
     align-items: top;
 }
 
-#infoList li{
+#infoList li {
     padding: 5px;
 }
 
@@ -45,6 +45,7 @@
     font-size: 30px;
     width: 457px;
 }
+
 #movieTagline {
     font-weight: 500;
     font-size: 18px;
@@ -54,12 +55,12 @@
     margin-bottom: 10px;
 }
 
-#description{
+#description {
     width: 390px;
     text-align: justify;
 }
 
-.movieActions{
+.movieActions {
     box-sizing: border-box;
     width: 230px;
     height: 390px;
