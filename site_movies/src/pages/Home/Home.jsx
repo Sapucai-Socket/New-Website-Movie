@@ -6,6 +6,8 @@ import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -14,10 +16,16 @@ const imageUrl = import.meta.env.VITE_IMG;
 const Slideshow = ({ topMovies }) => {
     const [slideIndex, setSlideIndex] = useState(0);
 
+    const goToPreviousSlide = () => {
+        setSlideIndex((prevIndex) => (prevIndex - 1 + topMovies.length) % topMovies.length);
+    };
+
+    const goToNextSlide = () => {
+        setSlideIndex((prevIndex) => (prevIndex + 1) % topMovies.length);
+    };
+
     useEffect(() => {
-        const interval = setInterval(() => {
-            setSlideIndex((prevIndex) => (prevIndex + 1) % topMovies.length);
-        }, 5000); //Definir tempo do carousel
+        const interval = setInterval(goToNextSlide, 5000); // Definir tempo do carousel
 
         return () => {
             clearInterval(interval);
@@ -53,6 +61,14 @@ const Slideshow = ({ topMovies }) => {
                         </div>
                     </div>
                 ))}
+            <div className="arrow-wrapper">
+                <div className="arrow left" onClick={goToPreviousSlide}>
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                </div>
+                <div className="arrow right" onClick={goToNextSlide}>
+                    <FontAwesomeIcon icon={faChevronRight} />
+                </div>
+            </div>
         </div>
     );
 };
