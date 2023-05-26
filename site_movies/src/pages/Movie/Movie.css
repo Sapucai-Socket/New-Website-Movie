@@ -11,21 +11,38 @@
     position: relative;
     width: 950px;
     margin: 0 auto;
-    background: linear-gradient(360deg, #0D0D0D 28.45%, rgba(13, 13, 13, 0) 59.33%);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 7px;
+    z-index: 0;
 }
 
-.headMovie {
+.headMovie{
     color: #f2efea;
+}
+
+#infoPanel {
+    position: relative;
+    margin-top: -10%;
+    z-index: 4;
+}
+
+.backgroundMovieShadow{
+    position: relative;
+    background: linear-gradient(360deg, #0D0D0D 28.45%, rgba(13, 13, 13, 0) 59.33%);
+
+    margin-top: -200px;
+    width: 950px;
+    height: 200px;
+    z-index: 3;
 }
 
 #infoList {
     list-style: none;
     display: flex;
+    margin-top: -10%;
     margin: auto 0;
     align-items: top;
 }
+
 
 #infoList li {
     padding: 5px;
