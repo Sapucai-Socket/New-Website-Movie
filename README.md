@@ -54,6 +54,9 @@
 
 ## ⚙️ Requerimentos
 - Node.JS
+```sh
+$ npm install
+```
   - Morgan(Dependência para Node.JS)
       ```sh
       $ npm i morgan
