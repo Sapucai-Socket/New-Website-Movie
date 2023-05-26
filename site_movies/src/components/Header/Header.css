@@ -132,6 +132,15 @@ nav ol li a:not(#userNaoCadastrado, .usuarioIcon):hover::after {
     object-fit: cover;
 }
 
+/*Imagem Log In / Imagem do Padrão do usuário*/
+#userPadrao {
+    width: 155px;
+    border-radius: 9%;
+    padding: 10px;
+    object-fit: cover;
+}
+
+
 #userNaoCadastrado:hover {
     border: 2px solid #557373;
     transition: 0.4s;
