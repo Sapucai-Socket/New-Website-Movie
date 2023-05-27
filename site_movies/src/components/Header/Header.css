@@ -63,12 +63,14 @@ nav ol {
 }
 
 nav ol li {
+    position: relative;
+    display: inline-block;
     font-size: 20px;
     letter-spacing: 1px;
     padding: 5px 15px;
 }
 
-nav ol li a {
+nav ol li a{
     position: relative;
     display: flex;
     align-items: center;
@@ -95,18 +97,62 @@ nav ol li a:not(#userNaoCadastrado, .usuarioIcon):hover::after {
     transform: scaleX(1);
 }
 
-.dropdown-menu {
-    display: none;
-    position: relative;
-    top: calc(100% + 10px);
-    left: 0;
-    margin-top: 10px;
-    background: #1c1c1c;
+nav ol li ul.dropdown li{
+    padding: 5px;
+    display: flex;
 }
 
-.dropdown:hover .dropdown-menu {
-    display: block;
+nav ol li ul.dropdown{
+    background: #0d0d0d;
+    position: absolute;
+    z-index: 999;
+    list-style: none;
+    display: none;
+    width: 90.58px; 
+    padding: 5px;
+    margin: 0 auto;
 }
+nav ol li ul.dropdown::after{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#dropdownOption {
+    font-size: 15px;    
+    border-radius: 7px;
+    display: flex;
+    text-align: center;
+}
+#dropdownOption:hover{
+    transition: 0.4s ease;
+}
+
+#dropdownnOptionA{
+    text-align: center;
+}
+
+#dropdownMenu{
+    padding: 5px;
+    text-align: center;
+    border-radius: 7px;
+    align-items: center;
+}
+
+nav ol li:hover ul.dropdown{
+    display: flex;
+    transition: 0.4s ease;
+    text-align: center;
+    padding: 5px;
+}
+
+#dropdownFather,
+#dropdownOptionA {
+  width: 90.59px; 
+  text-align: center;
+}
+
 
 /*Imagem Log In / Imagem do Usuário*/
 .usuarioIcon {

@@ -22,8 +22,15 @@ function Header({ user }) {
                         </div>
                     </form>
                     <ol>
-                        <li>
-                            <a href="#">Filmes</a>
+                        <li id="dropdownMenu">
+                            <a href="#" id="dropdownFather">Filmes ▾</a>
+                            <ul className="dropdown">
+                                <li id="dropdownOption"><a href="#" id="dropdownOptionA">Populares</a></li>
+                                <li id="dropdownOption"><a href="#" id="dropdownOptionA">Populares</a></li>
+                                <li id="dropdownOption"><a href="#" id="dropdownOptionA">Populares</a></li>
+                                <li id="dropdownOption"><a href="#" id="dropdownOptionA">Populares</a></li>
+                                <li id="dropdownOption"><a href="#" id="dropdownOptionA">Populares</a></li>
+                            </ul>
                         </li>
                         <li>
                             <a href="#">Séries</a>
