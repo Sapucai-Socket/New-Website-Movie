@@ -1,0 +1,23 @@
+.title-search {
+    color: white;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .title-search span { 
+    color: #557373;
+  }
+  
+  .movies-container-search {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .movies-container-search .movie-card {
+    /* Estilos opcionais para ajustar a largura e o espaçamento dos filmes */
+    width: 200px; /* Defina a largura desejada para cada filme */
+    margin: 10px; /* Ajuste o espaçamento entre os filmes */
+  }
+
+  

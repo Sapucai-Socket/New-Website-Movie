@@ -1,8 +1,21 @@
 import React from "react";
 import './Header.css'
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom"
 
 
 function Header({ user }) {
+    const [search, setSearch] = useState("")
+    const navigate = useNavigate()
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        if(!search) return;
+
+        navigate(`/search?q=${search}`)
+        setSearch("")
+    }
 
     return (
         <header>
@@ -12,11 +25,13 @@ function Header({ user }) {
                     <div className="icon">
                         <a href="/">Ciné</a>
                     </div>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="box">
                             <input
                                 id="pesquisa"
                                 placeholder="Busque filmes, séries, reviews ou pessoas..."
+                                onChange={(e) => setSearch(e.target.value)}
+                                value={search}
                             />
                             <button className="fa fa-search"></button>
                         </div>
