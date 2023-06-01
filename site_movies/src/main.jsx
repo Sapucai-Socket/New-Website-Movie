@@ -7,6 +7,7 @@ import Home from './pages/Home/Home'
 import Movie from './pages/Movie/Movie'
 import Search from './pages/Search/Search'
 import Perfil from './pages/Perfil/Perfil'
+import Terror from './pages/Generos/Terror'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/terror' element={<Terror />} />
           <Route path='/movie/:id' element={<Movie />} />
           <Route path="search" element={<Search />} />
           <Route path='/perfil' element={<Perfil />} />
