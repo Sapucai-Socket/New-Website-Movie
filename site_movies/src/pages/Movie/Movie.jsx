@@ -56,15 +56,46 @@ const Movie = () => {
                     <p>{movie.overview}</p>
                   </div>
                   <div id="duration">
-                    <p>{movie.runtime} minutos de duração.</p>
+                    <p><p id="movieRuntime">{movie.runtime}</p> minutos de duração.</p>
                   </div>
                 </ol>
               </li>
               <li>
-                <div className="movieActions">
-                  <button id="likeAdd">❤</button>
-                  <button id="watchlistAdd">📃</button>
+                <div className="movieActionsBox">
+                  <ol className="movieActions">
+                    <div>
+                      <button class="button heart">
+                        <i className="fa-regular fa-heart"></i>
+                      </button>
+                    </div>
+                    <div>
+                      <button class="button eyes">
+                        <i class="fa-solid fa-eye"></i>
+                      </button>
+                    </div>
+                    <div>
+                      <button class="button clock">
+                        <i class="fa-solid fa-list-ul"></i>
+                      </button>
+                      
+                    </div>
+                  </ol>
+                  
+                  <div className="reviewButton">
+                    <button>
+                      <h2>Review</h2>
+                    </button>
+                  </div>
+                  
+                  <div className="addListButton">
+                    <button>
+                      <h2>Adicionar á Lista...</h2>
+                    </button>
+                  </div>
+                  
+                 
                 </div>
+                
               </li>
             </ol>
             

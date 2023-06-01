@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Sora&display=swap');
 
+h2{
+    font-family: 'Sora', sans-serif;
+    font-weight: lighter;
+}
+
 .movie-page {
     margin: 0 auto;
     width: 950px;
@@ -77,12 +82,131 @@
     text-align: justify;
 }
 
-.movieActions {
+#duration{
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+#duration p{
+    display: inline;
+}
+
+#movieRuntime{
+    font-weight: bold;
+}
+
+.movieActionsBox{
     box-sizing: border-box;
     width: 230px;
-    height: 390px;
     background: #0D0D0D;
     border: 3px solid #615B5B;
     box-shadow: 27px 26px 100px 10px #000000, -27px -26px 100px 10px rgba(242, 239, 234, 0.04);
     border-radius: 7px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.movieActionsBox hr:not(.movieActions hr){
+    width: 100%;
+    border: 1px solid #615B5B;
+}
+
+
+.movieActions {
+    display: flex;
+    list-style: none;
+    margin: auto 0;
+    align-items: center;
+    border-bottom: 2px solid #615B5B;
+}
+
+.movieActions div{
+    display: flex;
+    width: 76px;
+    padding: 10px;
+    align-items: center;
+}
+
+.button {
+    width: 50px;
+    margin: 0 5px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+
+.heart {
+    font-size: 35px;
+    color: #f2efea;
+    background-size: cover;
+    text-align: center;
+}
+.heart:hover{
+    font-size: 40px;
+    transition: 0.2s;
+}
+
+
+.eyes {
+    font-size: 35px;
+    color: #f2efea;
+    background-size: cover;
+    text-align: center;
+
+}
+.eyes:hover{
+    font-size: 40px;
+    transition: 0.2s;
+}
+
+.clock {
+    font-size: 35px;
+    color: #f2efea;
+    background-size: cover;
+    text-align: center;
+
+
+}
+.clock:hover{
+    font-size: 40px;
+    transition: 0.2s;
+}
+
+.reviewButton{
+    width: 230px;
+    border-bottom: #615B5B solid 2px;
+}
+
+.reviewButton button{
+    width: 100%;
+    font-weight: lighter;
+    padding: 12px;
+    background: transparent;
+    color: #f2efea;
+    border: none;
+    cursor: pointer;
+}
+.reviewButton:hover{
+    background-color: #2e2c2c;
+    transition: 0.2s;
+}
+
+.addListButton{
+    width: 230px;
+}
+
+.addListButton button{
+    width: 100%;
+    font-weight: lighter;
+    padding: 12px;
+    background: transparent;
+    color: #f2efea;
+    border: none;
+    cursor: pointer;
+    border: solid 2px transparent;
+}
+.addListButton:hover{
+    background-color: #2e2c2c;
+    transition: 0.2s;
 }
