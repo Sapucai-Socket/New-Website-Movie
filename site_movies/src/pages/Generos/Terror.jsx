@@ -163,19 +163,20 @@ const Terror = () => {
                                 onChange={handlePageChange}
                                 renderItem={(item) => (
                                     <PaginationItem
-                                        component={Link}
-                                        to={`/?page=${item.page}`}
-                                        {...item}
-                                        sx={{
-                                            "&.Mui-selected": {
-                                                backgroundColor: "#557373", // Cor da bolinha da pagina atual
-                                            },
-                                            color: "white", // Cor dos numeros
-                                            fontWeight: "bold"
-                                        }}
+                                    component={Link}
+                                    to={`/terror?page=${item.page}`} // Ajuste a rota para '/terror?page='
+                                    {...item}
+                                    sx={{
+                                        "&.Mui-selected": {
+                                        backgroundColor: "#557373", // Cor da bolinha da pagina atual
+                                        },
+                                        color: "white", // Cor dos numeros
+                                        fontWeight: "bold"
+                                    }}
                                     />
                                 )}
-                            />
+/>
+
 
                         </Stack>
                     </div>
