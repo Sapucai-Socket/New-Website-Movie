@@ -8,13 +8,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
+import Stack from "@mui/material/Stack";
+
 
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
 const imageUrl = import.meta.env.VITE_IMG;
 
 const Slideshow = ({ topMovies }) => {
-
     const [slideIndex, setSlideIndex] = useState(0);
 
     const goToPreviousSlide = () => {
@@ -26,7 +29,7 @@ const Slideshow = ({ topMovies }) => {
     };
 
     useEffect(() => {
-        const interval = setInterval(goToNextSlide, 5000); // Definir tempo do carousel
+        const interval = setInterval(goToNextSlide, 7000); // Carrosel vai passar em 7 segundos
 
         return () => {
             clearInterval(interval);
@@ -77,7 +80,7 @@ const Slideshow = ({ topMovies }) => {
 const Home = () => {
     const [topMovies, setTopMovies] = useState([]);
     const [authUser, setAuthUser] = useState(null);
-
+    const [currentPage, setCurrentPage] = useState(1);
 
     const getTopRatedMovies = async (url) => {
         const res = await fetch(url);
@@ -86,9 +89,9 @@ const Home = () => {
     };
 
     useEffect(() => {
-        const topRatedUrl = `${moviesURL}popular?${apiKey}&language=pt-BR`;
+        const topRatedUrl = `${moviesURL}popular?${apiKey}&language=pt-BR&page=${currentPage}`;
         getTopRatedMovies(topRatedUrl);
-    }, []);
+    }, [currentPage]);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -112,6 +115,10 @@ const Home = () => {
             .catch((error) => console.log(error));
     };
 
+    const handlePageChange = (event, page) => {
+        setCurrentPage(page);
+    };
+
     return (
         <div className="container">
             <ToastContainer />
@@ -133,23 +140,45 @@ const Home = () => {
                 )}
             </div>
             <Slideshow topMovies={topMovies} />
-            
+
             <div className="wrapper-content">
                 <section id="populares">
                     <div className="lista">
-                    <div className="title">
-                        <h2>Populares na Ciné</h2>
-                        <a href="#">Ver Lista</a>
+                        <div className="title">
+                            <h2>Populares na Ciné</h2>
+                            <a href="#">Ver Lista</a>
+                        </div>
+                        <hr />
+                        <div className="movie-container">
+                            {topMovies.length > 0 &&
+                                topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} type={0} carussel={1} />)}
+                        </div>
+                        <br />
+                        <br />
+
+                        <Stack spacing={2} direction="row" justifyContent="center">
+                            <Pagination
+                                count={200} // Coloquei o total de paginas 200, mas se quiser aumentar, à vontade.
+                                page={currentPage}
+                                onChange={handlePageChange}
+                                renderItem={(item) => (
+                                    <PaginationItem
+                                        component={Link}
+                                        to={`/?page=${item.page}`}
+                                        {...item}
+                                        sx={{
+                                            "&.Mui-selected": {
+                                                backgroundColor: "#557373", // Cor da bolinha da pagina atual
+                                            },
+                                            color: "white", // Cor dos numeros
+                                            fontWeight: "bold"
+                                        }}
+                                    />
+                                )}
+                            />
+
+                        </Stack>
                     </div>
-                    <hr />
-                    <div className="movie-container">
-                        {topMovies.length > 0 &&
-                            topMovies.map((movie) => (
-                                <MovieCard key={movie.id} movie={movie} type={0} carussel={1} />
-                            ))}
-                    </div>
-                    <br></br><br></br>
-                </div>
                 </section>
             </div>
         </div>
