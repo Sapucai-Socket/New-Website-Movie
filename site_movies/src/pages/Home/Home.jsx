@@ -116,13 +116,12 @@ const Home = () => {
         <div className="container">
             <ToastContainer />
             <Header user={authUser} />
-            <Slideshow topMovies={topMovies} />
             <div className="welcomeUser" style={{ textAlign: "center" }}>
                 {authUser ? (
                     <>
                         <div style={{ textAlign: "center" }}>
                             <h1>
-                                Bem-Vindo! <a href="">{authUser.displayName}</a>. Aqui está o que temos assistido...
+                                Bem-Vindo! <a href="/perfil">{authUser.displayName}</a>. Aqui está o que temos assistido...
                             </h1>
                             <h4>Nome: {authUser.displayName}</h4>
                             <p>{`Conectado como ${authUser.email}`}</p>
@@ -133,8 +132,11 @@ const Home = () => {
                     <p id="signedOut">Desconectado</p>
                 )}
             </div>
+            <Slideshow topMovies={topMovies} />
+            
             <div className="wrapper-content">
-                <div className="lista">
+                <section id="populares">
+                    <div className="lista">
                     <div className="title">
                         <h2>Populares na Ciné</h2>
                         <a href="#">Ver Lista</a>
@@ -148,6 +150,7 @@ const Home = () => {
                     </div>
                     <br></br><br></br>
                 </div>
+                </section>
             </div>
         </div>
     );

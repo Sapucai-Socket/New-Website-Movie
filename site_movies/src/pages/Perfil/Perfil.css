@@ -1,6 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Istok+Web&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Istok+Web:wght@700&display=swap");
 
+
+.wrapperProfile{
+    margin: 0 auto;
+    width: 950px;
+    color: #f2efea;
+    font-weight: lighter;
+    font-family: 'Montserrat', sans-serif;
+}
+
 .profileContainer {
     display: flex;
     align-items: center;
@@ -19,19 +28,19 @@
 }
 
 #nomeUsuario {
-    font-family: "Istok Web", sans-serif;
+    
     font-weight: bolder;
     color: white;
 }
 
 #descUsuario {
-    font-family: "Istok Web", sans-serif;
+    
     color: white;
 }
 
 .otherUserInfos {
     color: white;
-    font-family: Arial, sans-serif;
+   
     text-align: center;
     justify-content: center;
     display: flex;
@@ -70,7 +79,7 @@
 
 #favoritos-cabecalho {
     border-bottom: 1px solid grey;
-    font-family: Arial, sans-serif;
+   
     font-size: medium;
     font-weight: lighter;
 }
@@ -99,7 +108,7 @@
 #avaliacoes-cabecalho {
     color: white;
     border-bottom: 1px solid grey;
-    font-family: Arial, sans-serif;
+   
     font-size: medium;
     font-weight: lighter;
 }

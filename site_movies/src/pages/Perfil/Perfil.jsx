@@ -73,7 +73,7 @@ const Perfil = () => {
     };
 
     return (
-        <div>
+        <div className="wrapperProfile">
             <div className="profileContainer">
                 <div className="pfpImage">
                     {authUser?.photoURL ? (

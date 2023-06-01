@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kaisei+Decol:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+html{
+    scroll-behavior: smooth;
+}
 
 body {
     line-height: 1.5;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: lighter;
     height: 100vh;
     justify-self: center;
@@ -148,11 +153,11 @@ nav ol li:hover ul.dropdown{
     padding: 5px;
 }
 
-#dropdownFather,
 #dropdownOptionA {
   width: 90.59px; 
   text-align: center;
 }
+
 
 
 /*Imagem Log In / Imagem do Usuário*/

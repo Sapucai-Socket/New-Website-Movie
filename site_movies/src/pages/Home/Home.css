@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 body {
     line-height: 1.5;
-    font-family: 'Istok Web', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     height: 100vh;
     justify-self: center;
     align-items: center;
@@ -18,9 +20,17 @@ body {
 }
 
 .welcomeUser{
-    color: #f2efea;
+    margin: 0 auto;
+    width: 950px;
+    color: #f2efeabe;
     font-weight: lighter;
     margin-top: 30px;
+    padding: 10px;
+}
+
+.welcomeUser a{
+    color: #f2efea;
+    font-family: 'Playfair Display', serif;
 }
 
 #signedOut{
@@ -59,3 +69,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
+.slideshow-container {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
