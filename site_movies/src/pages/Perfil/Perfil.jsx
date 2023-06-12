@@ -6,13 +6,14 @@ import { onAuthStateChanged, signInWithPopup, signOut, } from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { Link } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 
 const Perfil = () => {
     const [authUser, setAuthUser] = useState(null);
     const [nome, setNome] = useState("");
     const [descricao, setDescricao] = useState("");
+    const [fav, setFav] = useState("");
     const navigate = useNavigate();
 
     const getNomeUsuario = async (uid) => {
@@ -36,6 +37,13 @@ const Perfil = () => {
         const descricao = docSnap.data().descricao;
         setDescricao(descricao);
     };
+    const getFav = async(uid) => {
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
+        const fav = docSnap.data().fav;
+        setFav(fav);
+
+    }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -44,6 +52,7 @@ const Perfil = () => {
                 setAuthUser(user);
                 getNomeUsuario(uid);
                 getDescricao(uid);
+                getFav(uid)
             } else {
                 navigate("/login");
             }
@@ -86,11 +95,12 @@ const Perfil = () => {
                     <h1 id="nomeUsuario">{!authUser?.displayName ? nome : authUser.displayName}</h1>
                     <i id="descUsuario">{descricao}</i>
                 </div>
+
             </div>
 
             <div className="otherUserInfos">
                 <div className="otherUserInfo">
-                    <span className="quantity">4</span>
+                    <span className="quantity">{Object.keys(fav).length}</span>
                     <br />
                     <span className="parameter">FILMES</span>
                 </div>
@@ -127,36 +137,20 @@ const Perfil = () => {
                 <h2 id="favoritos-cabecalho">FILMES FAVORITOS</h2>
 
                 <div className="posterUserFavorites">
-                    <div className="flex-child">
-                        <a href="#">
-                            <img
-                                className="filme-favorito"
-                                src="https://m.media-amazon.com/images/M/MV5BNzQzMzJhZTEtOWM4NS00MTdhLTg0YjgtMjM4MDRkZjUwZDBlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_.jpg"
-                                alt="Filme Favorito"
-                            />
-                        </a>
+                    {Object.entries(fav).map(([key, url]) => (
+                    <div className="flex-child" key={key}>
+                        <Link to={`/movie/${key}`}>
+                        <img
+                            src={url}
+                            alt="Imagem Favorita"
+                            className="filme-favorito"
+                        />
+                        </Link>
                     </div>
-
-                    <div className="flex-child">
-                        <a href="#">
-                            <img
-                                className="filme-favorito"
-                                src="https://m.media-amazon.com/images/M/MV5BY2NkZjEzMDgtN2RjYy00YzM1LWI4ZmQtMjIwYjFjNmI3ZGEwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_FMjpg_UX1000_.jpg"
-                                alt="Filme Favorito"
-                            />
-                        </a>
-                    </div>
-                    <div className="flex-child">
-                        <a href="#">
-                            <img
-                                className="filme-favorito"
-                                src="https://image.tmdb.org/t/p/original/gmU7P3FzGFsl2wiSDhx9znZCNub.jpg"
-                                alt="Filme Favorito"
-                            />
-                        </a>
-                    </div>
+                    ))}
                 </div>
-            </div>
+                </div>
+
             <div id="secao-filmes-avaliados">
                 <h2 id="avaliacoes-cabecalho">REVIEWS</h2>
 
