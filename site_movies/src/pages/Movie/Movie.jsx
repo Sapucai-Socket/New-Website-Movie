@@ -17,6 +17,7 @@ const Movie = () => {
     const data = await res.json();
     console.log(data);
     setMovie(data);
+    console.log(`${id}: "${imageUrl + data.poster_path}"`)
   };
 
   const formatCurrency = (number) => {
