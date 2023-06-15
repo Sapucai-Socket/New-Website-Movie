@@ -77,7 +77,7 @@ const Slideshow = ({ topMovies }) => {
     );
 };
 
-const Home = () => {
+const Animacao = () => {
     const [topMovies, setTopMovies] = useState([]);
     const [authUser, setAuthUser] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
@@ -89,8 +89,9 @@ const Home = () => {
         setTopMovies(movies);
     };
 
+
     useEffect(() => {
-        const topRatedUrl = `${moviesURL}popular?${apiKey}&language=pt-BR&page=${currentPage}`;
+        const topRatedUrl = `${moviesURL}popular?${apiKey}&with_genres=16&language=pt-BR&page=${currentPage}`;
         getTopRatedMovies(topRatedUrl);
     }, [currentPage]);
 
@@ -146,7 +147,7 @@ const Home = () => {
                 <section id="populares">
                     <div className="lista">
                         <div className="title">
-                            <h2>Populares na Ciné</h2>
+                            <h2>Filmes de Animação</h2>
                             <a href="#">Ver Lista</a>
                         </div>
                         <hr />
@@ -165,7 +166,7 @@ const Home = () => {
                                 renderItem={(item) => (
                                     <PaginationItem
                                         component={Link}
-                                        to={`/?page=${item.page}`}
+                                        to={`/animacao?page=${item.page}`} // Ajuste a rota para '/Animacao?page='
                                         {...item}
                                         sx={{
                                             "&.Mui-selected": {
@@ -178,6 +179,7 @@ const Home = () => {
                                 )}
                             />
 
+
                         </Stack>
                     </div>
                 </section>
@@ -186,4 +188,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Animacao;

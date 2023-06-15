@@ -77,7 +77,7 @@ const Slideshow = ({ topMovies }) => {
     );
 };
 
-const Home = () => {
+const Aventura = () => {
     const [topMovies, setTopMovies] = useState([]);
     const [authUser, setAuthUser] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
@@ -88,9 +88,10 @@ const Home = () => {
         const movies = data.results.slice(0, 18); // Limita a exibição de 18 filmes por página
         setTopMovies(movies);
     };
+    
 
     useEffect(() => {
-        const topRatedUrl = `${moviesURL}popular?${apiKey}&language=pt-BR&page=${currentPage}`;
+        const topRatedUrl = `${moviesURL}popular?${apiKey}&with_genres=10752&language=pt-BR&page=${currentPage}`;
         getTopRatedMovies(topRatedUrl);
     }, [currentPage]);
 
@@ -146,7 +147,7 @@ const Home = () => {
                 <section id="populares">
                     <div className="lista">
                         <div className="title">
-                            <h2>Populares na Ciné</h2>
+                            <h2>Filmes de Guerra</h2>
                             <a href="#">Ver Lista</a>
                         </div>
                         <hr />
@@ -165,7 +166,7 @@ const Home = () => {
                                 renderItem={(item) => (
                                     <PaginationItem
                                         component={Link}
-                                        to={`/?page=${item.page}`}
+                                        to={`/Aventura?page=${item.page}`} // Ajuste a rota para '/Aventura?page='
                                         {...item}
                                         sx={{
                                             "&.Mui-selected": {
@@ -178,6 +179,7 @@ const Home = () => {
                                 )}
                             />
 
+
                         </Stack>
                     </div>
                 </section>
@@ -186,4 +188,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Aventura;

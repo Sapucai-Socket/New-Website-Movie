@@ -10,8 +10,8 @@ function Header({ user }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        if(!search) return;
+
+        if (!search) return;
 
         navigate(`/search?q=${search}`)
         setSearch("")
@@ -41,6 +41,10 @@ function Header({ user }) {
                             <a href="#" id="dropdownFather">Filmes ▾</a>
                             <ul className="dropdown">
                                 <li id="dropdownOption"><a href="/terror" id="dropdownOptionA">Terror</a></li>
+                                <li id="dropdownOption"><a href="/acao" id="dropdownOptionA">Ação</a></li>
+                                <li id="dropdownOption"><a href="/animacao" id="dropdownOptionA">Animação</a></li>
+                                <li id="dropdownOption"><a href="/ficcao" id="dropdownOptionA">Ficção</a></li>
+                                <li id="dropdownOption"><a href="/aventura" id="dropdownOptionA">Guerra</a></li>
                             </ul>
                         </li>
                         <li>

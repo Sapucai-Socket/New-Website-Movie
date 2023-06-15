@@ -82,11 +82,14 @@ const Terror = () => {
     const [authUser, setAuthUser] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
 
+
     const getTopRatedMovies = async (url) => {
         const res = await fetch(url);
         const data = await res.json();
-        setTopMovies(data.results);
+        const movies = data.results.slice(0, 18); // Limita a exibição de 18 filmes por página
+        setTopMovies(movies);
     };
+
 
     useEffect(() => {
         const topRatedUrl = `${moviesURL}popular?${apiKey}&with_genres=27&language=pt-BR&page=${currentPage}`;
@@ -163,19 +166,19 @@ const Terror = () => {
                                 onChange={handlePageChange}
                                 renderItem={(item) => (
                                     <PaginationItem
-                                    component={Link}
-                                    to={`/terror?page=${item.page}`} // Ajuste a rota para '/terror?page='
-                                    {...item}
-                                    sx={{
-                                        "&.Mui-selected": {
-                                        backgroundColor: "#557373", // Cor da bolinha da pagina atual
-                                        },
-                                        color: "white", // Cor dos numeros
-                                        fontWeight: "bold"
-                                    }}
+                                        component={Link}
+                                        to={`/terror?page=${item.page}`} // Ajuste a rota para '/terror?page='
+                                        {...item}
+                                        sx={{
+                                            "&.Mui-selected": {
+                                                backgroundColor: "#557373", // Cor da bolinha da pagina atual
+                                            },
+                                            color: "white", // Cor dos numeros
+                                            fontWeight: "bold"
+                                        }}
                                     />
                                 )}
-/>
+                            />
 
 
                         </Stack>
