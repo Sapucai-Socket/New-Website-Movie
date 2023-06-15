@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { collection, addDoc } from "firebase/firestore";
+import { db } from '../../firebase';
+
 const Register = () => {
-    const navigate = useNavigate();
+    const [nomeUsuario, setNomeUsuario] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const adcUsuario = async (uid) => {
+        try {
+            const docRef = await addDoc(collection(db, "users"), {
+                id_usr: uid,
+                nome_usr: nomeUsuario
+            });
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    }
 
     const signUp = (e) => {
         e.preventDefault();
@@ -16,6 +30,7 @@ const Register = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 toast.success(`Sucesso! Você é o ${user.email}.\nPor favor, faça login.`);
+                adcUsuario(user.uid);
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -28,6 +43,7 @@ const Register = () => {
                     toast.error(`${errorCode}\n${errorMessage}`);
                 }
             });
+            
     };
 
     return (
@@ -51,7 +67,13 @@ const Register = () => {
                             <h2>Registrar-se</h2>
                             <form onSubmit={signUp}>
                                 <div className="input_box">
-                                    <input required type="user" placeholder="Usuário" />
+                                    <input
+                                        required
+                                        type="text"
+                                        placeholder="Usuário"
+                                        value={nomeUsuario}
+                                        onChange={(e) => setNomeUsuario(e.target.value)}
+                                    />
                                 </div>
 
                                 <div className="input_box">
