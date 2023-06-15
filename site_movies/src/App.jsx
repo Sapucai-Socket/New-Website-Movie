@@ -12,8 +12,10 @@ function App() {
   return (
     <div className="App">
       {(location.pathname !== '/login' && <Header />) && (location.pathname !== '/register' && <Header />)
-        && (location.pathname !== '/' && <Header />) && (location.pathname !== '../../pages/Generos', '/')
-        && (location.pathname !== '../../pages/Moie' && <Header />)}
+        && (location.pathname !== '/' && <Header />) && (location.pathname !== '/acao' && <Header />) &&
+        (location.pathname !== '/terror' && <Header />) && (location.pathname !== '/animacao' && <Header />)
+        && (location.pathname !== '/ficcao' && <Header />) && (location.pathname !== '/guerra' && <Header />)
+        && (location.pathname !== '../../Movie' && <Header />)}
 
       <Outlet />
       <Footer />

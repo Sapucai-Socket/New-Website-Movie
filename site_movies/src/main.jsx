@@ -10,7 +10,7 @@ import Perfil from './pages/Perfil/Perfil'
 import Terror from './pages/Generos/Terror'
 import Acao from './pages/Generos/Acao'
 import Animacao from './pages/Generos/Animacao'
-import Aventura from './pages/Generos/Aventura'
+import Guerra from './pages/Generos/Guerra'
 import Ficcao from './pages/Generos/Ficcao'
 import Login from './pages/Login/Login'
 import Register from './pages/Register/Register'
@@ -33,7 +33,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/terror' element={<Terror />} />
           <Route path='/acao' element={<Acao />} />
           <Route path='/animacao' element={<Animacao />} />
-          <Route path='/aventura' element={<Aventura />} />
+          <Route path='/guerra' element={<Guerra />} />
           <Route path='/ficcao' element={<Ficcao />} />
           <Route path='/movie/:id' element={<Movie />} />
           <Route path="search" element={<Search />} />

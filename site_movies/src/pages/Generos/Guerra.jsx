@@ -77,7 +77,7 @@ const Slideshow = ({ topMovies }) => {
     );
 };
 
-const Aventura = () => {
+const Guerra = () => {
     const [topMovies, setTopMovies] = useState([]);
     const [authUser, setAuthUser] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
@@ -166,7 +166,7 @@ const Aventura = () => {
                                 renderItem={(item) => (
                                     <PaginationItem
                                         component={Link}
-                                        to={`/Aventura?page=${item.page}`} // Ajuste a rota para '/Aventura?page='
+                                        to={`/guerra?page=${item.page}`} // Ajuste a rota para '/Guerra?page='
                                         {...item}
                                         sx={{
                                             "&.Mui-selected": {
@@ -188,4 +188,4 @@ const Aventura = () => {
     );
 };
 
-export default Aventura;
+export default Guerra;
