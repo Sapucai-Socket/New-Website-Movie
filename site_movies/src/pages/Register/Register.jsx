@@ -18,7 +18,8 @@ const Register = () => {
         try {
             await setDoc(doc(db, "users", uid), {
                 id_usr: uid,
-                nome_usr: nomeUsuario
+                nome_usr: nomeUsuario,
+                fav: {}
             });
 
             console.log('Data added to Firestore with custom document ID:', uid);
