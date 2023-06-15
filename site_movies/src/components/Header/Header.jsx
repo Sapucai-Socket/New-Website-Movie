@@ -44,7 +44,7 @@ function Header({ user }) {
                                 <li id="dropdownOption"><a href="/acao" id="dropdownOptionA">Ação</a></li>
                                 <li id="dropdownOption"><a href="/animacao" id="dropdownOptionA">Animação</a></li>
                                 <li id="dropdownOption"><a href="/ficcao" id="dropdownOptionA">Ficção</a></li>
-                                <li id="dropdownOption"><a href="/aventura" id="dropdownOptionA">Guerra</a></li>
+                                <li id="dropdownOption"><a href="/guerra" id="dropdownOptionA">Guerra</a></li>
                             </ul>
                         </li>
                         <li>
