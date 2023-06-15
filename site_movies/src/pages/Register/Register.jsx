@@ -16,7 +16,6 @@ const Register = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 toast.success(`Sucesso! Você é o ${user.email}.\nPor favor, faça login.`);
-                navigate('/login');
             })
             .catch((error) => {
                 const errorCode = error.code;
