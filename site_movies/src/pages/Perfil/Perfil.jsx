@@ -19,7 +19,7 @@ const Perfil = () => {
     const getNomeUsuario = async (uid) => {
         const docRef = doc(db, "users", uid);
         const docSnap = await getDoc(docRef);
-        const name = docSnap.data().nome;
+        const name = docSnap.data().nome_usr;
         setNome(name);
         /*
                 if (docSnap.exists()) {
@@ -42,7 +42,6 @@ const Perfil = () => {
         const docSnap = await getDoc(docRef);
         const fav = docSnap.data().fav;
         setFav(fav);
-
     }
 
     useEffect(() => {

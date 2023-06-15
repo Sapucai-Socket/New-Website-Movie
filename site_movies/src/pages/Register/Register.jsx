@@ -4,7 +4,9 @@ import { auth } from '../../firebase';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { collection, addDoc } from "firebase/firestore";
+// import { collection, addDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
+
 import { db } from '../../firebase';
 
 const Register = () => {
@@ -14,6 +16,17 @@ const Register = () => {
 
     const adcUsuario = async (uid) => {
         try {
+            await setDoc(doc(db, "users", uid), {
+                id_usr: uid,
+                nome_usr: nomeUsuario
+            });
+
+            console.log('Data added to Firestore with custom document ID:', uid);
+        } catch (error) {
+            console.error('Error adding data:', error);
+        }
+        /*
+        try {
             const docRef = await addDoc(collection(db, "users"), {
                 id_usr: uid,
                 nome_usr: nomeUsuario
@@ -22,6 +35,7 @@ const Register = () => {
         } catch (e) {
             console.error("Error adding document: ", e);
         }
+        */
     }
 
     const signUp = (e) => {
@@ -43,7 +57,7 @@ const Register = () => {
                     toast.error(`${errorCode}\n${errorMessage}`);
                 }
             });
-            
+
     };
 
     return (
