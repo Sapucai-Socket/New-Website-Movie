@@ -1,6 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import MovieCard from "../../components/MovieCard/MovieCard";
+import { auth, db } from "../../firebase";
+import { getAdditionalUserInfo, onAuthStateChanged, signInWithPopup, signOut, } from "firebase/auth";
+import { doc, setDoc, getDoc } from "firebase/firestore";
+
+//import firebase from 'firebase/app'
+//const FieldValue = firebase.firestore.FieldValue;
+
 const imageUrl = import.meta.env.VITE_IMG;
 
 import "./Movie.css";
@@ -11,6 +18,52 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const Movie = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+  const [fav, setFav] = useState("");
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    const movieUrl = `${moviesURL}${id}?${apiKey}&language=pt-BR`;
+    getMovie(movieUrl);
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const uid = user.uid;
+            setUser(user)
+            getFav(uid)       
+        } /*else {
+          navigate("/login");
+        }*/
+        alert(`${user.uid}"`);
+    });
+
+    return () => {
+        unsubscribe();
+    };
+  }, []);
+
+
+  const updateFavoriteFilm = (id, imageUrl, poster_path) => {
+    alert(`${id}: "${imageUrl + poster_path}" ${fav["3213123"]}`);
+  
+    // Se o filme não estiver favoritado
+    if (!fav.hasOwnProperty(id)) {
+      const docRef = doc(db, "users", user.uid);
+      setDoc(
+        docRef,
+        {
+          fav: {
+            ...fav, // Manter as propriedades existentes
+            [id]: imageUrl + poster_path // Adicionar a nova propriedade com o ID como chave
+          },
+        },
+        { merge: true }
+      );
+    } else {
+      // O que você deseja fazer quando o filme já estiver favoritado?
+      // Adicione o código aqui.
+    }
+  }
+  
 
   const getMovie = async (url) => {
     const res = await fetch(url);
@@ -20,17 +73,18 @@ const Movie = () => {
     console.log(`${id}: "${imageUrl + data.poster_path}"`)
   };
 
-  const formatCurrency = (number) => {
-    return number.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-  };
+  const getFav = async(uid) => {
+      const docRef = doc(db, "users", uid);
+      const docSnap = await getDoc(docRef);
+      const fav = docSnap.data().fav
+      //const favJson = JSON.stringify(fav, null, 3);
+      //alert(`${fav["3213123"]}`);
+      setFav(fav);
 
-  useEffect(() => {
-    const movieUrl = `${moviesURL}${id}?${apiKey}&language=pt-BR`;
-    getMovie(movieUrl);
-  }, []);
+      ///TODO: acessar o fav[id] e, caso exista, mudar o coração para preenchido, senão mantem o coração sem preenchimento
+
+      
+  }
 
   return (
     <div className="movie-page">
@@ -65,7 +119,7 @@ const Movie = () => {
                 <div className="movieActionsBox">
                   <ol className="movieActions">
                     <div>
-                      <button class="button heart">
+                      <button class="button heart" onClick={() => updateFavoriteFilm(id, imageUrl, movie.poster_path)}>
                         <i className="fa-regular fa-heart"></i>
                       </button>
                     </div>
