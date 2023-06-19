@@ -3,6 +3,7 @@ import "./Perfil.css";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../firebase";
 import { onAuthStateChanged, signInWithPopup, signOut, } from "firebase/auth";
+import Header from "../../components/Header/Header";
 import { collection, getDocs } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
