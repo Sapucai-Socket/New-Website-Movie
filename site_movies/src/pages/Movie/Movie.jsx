@@ -7,8 +7,10 @@ import { doc, setDoc, getDoc, updateDoc, arrayRemove } from "firebase/firestore"
 import Header from "../../components/Header/Header";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Modal from "react-modal"
 
 import "./Movie.css";
+
 
 const imageUrl = import.meta.env.VITE_IMG;
 const moviesURL = import.meta.env.VITE_API;
@@ -19,7 +21,9 @@ const Movie = () => {
   const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const [fav, setFav] = useState({});
+  const [review, setReview] = useState({});
   const [user, setUser] = useState(null);
+  const [modalIsOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     const movieUrl = `${moviesURL}${id}?${apiKey}&language=pt-BR`;
@@ -69,8 +73,36 @@ const Movie = () => {
     await updateDoc(docRef, { fav: updatedFav });
     toast.success("Filme removido dos favoritos");
 
-    setFav(updatedFav);
+    setReview(updatedFav);
   };
+
+  const reviewFilm = async (id) => {
+    if (!user) {
+      // Caso o usuário não esteja autenticado, redirecionar para a página de login
+      navigate("/login");
+      return;
+    }
+    const updatedReview = { ...review };
+    updatedReview[id] = imageUrl + movie.poster_path;
+
+    const docRef = doc(db, "users", user.uid);
+    await setDoc(docRef, { review: updatedReview }, { merge: true });
+    toast.success("Filme adicionado aos favoritos");
+    setIsOpen(true)
+    setFav(updatedReview);
+    
+  }
+ 
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+
+  function openModal () {
+    setIsOpen(true)
+  }
+
+ 
 
   const updateFavoriteFilm = (id) => {
     if (fav.hasOwnProperty(id)) {
@@ -168,10 +200,25 @@ const Movie = () => {
                           </button>
                         </div>
                       </ol>
-                      <div className="reviewButton">
-                        <button>
+                      <div className="reviewButton" >
+                        <button onClick={() => reviewFilm(movie)}>
                           <h2>Review</h2>
-                        </button>
+                          </button>
+                          <Modal 
+                            isOpen={modalIsOpen}
+                            onRequestClose={closeModal}
+                            contentLabel="Example Modal"
+                            overlayClassName="modal-overlay"
+                            className="modal-content" >
+                              <h2>{movie.title}</h2>
+                              <hr />
+                              <p>
+                                Aqui vai a caixa de entrada do usuario, juntamente com as informações do filme, bem como a sua avaliação.
+                              </p>
+
+                              <button onClick={closeModal}>Fechar</button>
+                          </Modal>
+                        
                       </div>
                       <div className="addListButton">
                         <button>
