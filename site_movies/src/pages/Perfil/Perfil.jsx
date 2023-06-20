@@ -148,7 +148,6 @@ const Perfil = () => {
           <span className="parameter">SEGUIDORES</span>
         </div>
       </div>
-      <button onClick={handleLogout}>Sair</button>
       <div id="favoritos">
         <h2 id="favoritos-cabecalho">FILMES FAVORITOS</h2>
 
