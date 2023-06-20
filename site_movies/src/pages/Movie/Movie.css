@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Sora&display=swap');
 
-h2{
+h2 {
     font-family: 'Sora', sans-serif;
     font-weight: lighter;
 }
@@ -12,6 +12,29 @@ h2{
     font-weight: lighter;
 }
 
+.infoNewApi {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 0;
+    display: flex;
+
+    .infoItem {
+        margin-right: 10px;
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .text {
+        margin-right: 10px;
+        opacity: 0.5;
+        line-height: 24px;
+
+        &.bold {
+            font-weight: 600;
+            opacity: 1;
+        }
+    }
+}
+
 #movieBackground {
     position: relative;
     width: 950px;
@@ -20,7 +43,7 @@ h2{
     z-index: 0;
 }
 
-.headMovie{
+.headMovie {
     color: #f2efea;
 }
 
@@ -30,7 +53,7 @@ h2{
     z-index: 4;
 }
 
-.backgroundMovieShadow{
+.backgroundMovieShadow {
     position: relative;
     background: linear-gradient(360deg, #0D0D0D 28.45%, rgba(13, 13, 13, 0) 59.33%);
 
@@ -82,20 +105,20 @@ h2{
     text-align: justify;
 }
 
-#duration{
+#duration {
     margin-top: 2%;
     margin-bottom: 2%;
 }
 
-#duration p{
+#duration p {
     display: inline;
 }
 
-#movieRuntime{
+#movieRuntime {
     font-weight: bold;
 }
 
-.movieActionsBox{
+.movieActionsBox {
     box-sizing: border-box;
     width: 230px;
     background: #0D0D0D;
@@ -106,7 +129,8 @@ h2{
     display: flex;
     flex-direction: column;
 }
-.movieActionsBox hr:not(.movieActions hr){
+
+.movieActionsBox hr:not(.movieActions hr) {
     width: 100%;
     border: 1px solid #615B5B;
 }
@@ -120,7 +144,7 @@ h2{
     border-bottom: 2px solid #615B5B;
 }
 
-.movieActions div{
+.movieActions div {
     display: flex;
     width: 76px;
     padding: 10px;
@@ -142,7 +166,8 @@ h2{
     background-size: cover;
     text-align: center;
 }
-.heart:hover{
+
+.heart:hover {
     font-size: 40px;
     transition: 0.2s;
 }
@@ -155,7 +180,8 @@ h2{
     text-align: center;
 
 }
-.eyes:hover{
+
+.eyes:hover {
     font-size: 40px;
     transition: 0.2s;
 }
@@ -168,45 +194,49 @@ h2{
 
 
 }
-.clock:hover{
+
+.clock:hover {
     font-size: 40px;
     transition: 0.2s;
 }
 
-.reviewButton{
+.reviewButton {
     width: 230px;
     border-bottom: #615B5B solid 2px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .modal-overlay {
     z-index: 100;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 .modal-content {
     width: 90%;
     max-width: 500px;
     background-color: white;
     padding: 10px;
     border-radius: 5px;
-  }
+}
 
-  .modal-content button{
+.modal-content button {
     padding: 5px;
     font-size: large;
     float: right;
     cursor: pointer;
-  }
-.reviewButton button{
+}
+
+.reviewButton button {
     width: 100%;
     font-weight: lighter;
     padding: 12px;
@@ -215,16 +245,17 @@ h2{
     border: none;
     cursor: pointer;
 }
-.reviewButton:hover{
+
+.reviewButton:hover {
     background-color: #2e2c2c;
     transition: 0.2s;
 }
 
-.addListButton{
+.addListButton {
     width: 230px;
 }
 
-.addListButton button{
+.addListButton button {
     width: 100%;
     font-weight: lighter;
     padding: 12px;
@@ -234,7 +265,8 @@ h2{
     cursor: pointer;
     border: solid 2px transparent;
 }
-.addListButton:hover{
+
+.addListButton:hover {
     background-color: #2e2c2c;
     transition: 0.2s;
 }

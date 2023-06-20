@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { FaStar } from "react-icons/fa";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import { auth, db } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -7,10 +8,10 @@ import { doc, setDoc, getDoc, updateDoc, arrayRemove } from "firebase/firestore"
 import Header from "../../components/Header/Header";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Modal from "react-modal"
+import Modal from "react-modal";
+import dayjs from "dayjs";
 
 import "./Movie.css";
-
 
 const imageUrl = import.meta.env.VITE_IMG;
 const moviesURL = import.meta.env.VITE_API;
@@ -23,7 +24,7 @@ const Movie = () => {
   const [fav, setFav] = useState({});
   const [review, setReview] = useState({});
   const [user, setUser] = useState(null);
-  const [modalIsOpen, setIsOpen] = useState(false)
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const movieUrl = `${moviesURL}${id}?${apiKey}&language=pt-BR`;
@@ -44,7 +45,6 @@ const Movie = () => {
 
   const addFavoriteFilm = async (id) => {
     if (!user) {
-      // Caso o usuário não esteja autenticado, redirecionar para a página de login
       navigate("/login");
       return;
     }
@@ -61,7 +61,6 @@ const Movie = () => {
 
   const removeFavoriteFilm = async (id) => {
     if (!user) {
-      // Caso o usuário não esteja autenticado, redirecionar para a página de login
       navigate("/login");
       return;
     }
@@ -73,36 +72,28 @@ const Movie = () => {
     await updateDoc(docRef, { fav: updatedFav });
     toast.success("Filme removido dos favoritos");
 
-    setReview(updatedFav);
+    setFav(updatedFav);
   };
 
   const reviewFilm = async (id) => {
     if (!user) {
-      // Caso o usuário não esteja autenticado, redirecionar para a página de login
       navigate("/login");
       return;
     }
+
     const updatedReview = { ...review };
     updatedReview[id] = imageUrl + movie.poster_path;
 
     const docRef = doc(db, "users", user.uid);
     await setDoc(docRef, { review: updatedReview }, { merge: true });
     toast.success("Filme adicionado aos favoritos");
-    setIsOpen(true)
-    setFav(updatedReview);
-    
-  }
- 
+    setIsOpen(true);
+    setReview(updatedReview);
+  };
+
   function closeModal() {
     setIsOpen(false);
   }
-
-
-  function openModal () {
-    setIsOpen(true)
-  }
-
- 
 
   const updateFavoriteFilm = (id) => {
     if (fav.hasOwnProperty(id)) {
@@ -112,10 +103,31 @@ const Movie = () => {
     }
   };
 
+  const getStarRating = () => {
+    const rating = Math.round(movie.vote_average / 2);
+    const stars = [];
+
+    for (let i = 0; i < 5; i++) {
+      if (i < rating) {
+        stars.push(<FaStar key={i} />);
+      } else {
+        stars.push(<FaStar key={i} style={{ color: "gray" }} />);
+      }
+    }
+
+    return stars;
+  };
+
   const getMovie = async (url) => {
     const res = await fetch(url);
     const data = await res.json();
     setMovie(data);
+  };
+
+  const toHoursAndMinutes = (totalMinutes) => {
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
   };
 
   const getFav = async (uid) => {
@@ -130,7 +142,6 @@ const Movie = () => {
     }
   };
 
-  // Adicione este useEffect para buscar os favoritos do usuário novamente após a atualização da página
   useEffect(() => {
     if (user) {
       getFav(user.uid);
@@ -145,12 +156,20 @@ const Movie = () => {
           <>
             <MovieCard movie={movie} showLink={false} type={1} />
             <div className="container">
-              <img id="movieBackground" src={imageUrl + movie.backdrop_path} alt={movie.title} />
+              <img
+                id="movieBackground"
+                src={imageUrl + movie.backdrop_path}
+                alt={movie.title}
+              />
               <div className="backgroundMovieShadow"></div>
               <div id="infoPanel" className="infoPanel">
                 <ol id="infoList">
                   <li>
-                    <img id="movieImg" src={imageUrl + movie.poster_path} alt={movie.title} />
+                    <img
+                      id="movieImg"
+                      src={imageUrl + movie.poster_path}
+                      alt={movie.title}
+                    />
                   </li>
                   <li>
                     <ol>
@@ -158,20 +177,69 @@ const Movie = () => {
                         <p id="movieTitle" className="Title">
                           {movie.title}
                         </p>
-                        <p id="movieDirector" className="Director">
-                          {movie.director}
-                        </p>
+
+                        <div className="movie-cardInfo">
+                          <p id="star">
+                            {getStarRating()} {movie.vote_average}
+                          </p>
+                        </div>
                         <p id="movieTagline" className="tagline">
                           {movie.tagline}
                         </p>
                       </div>
+
                       <div id="description" className="info description">
                         <p>{movie.overview}</p>
                       </div>
                       <div id="duration">
                         <p>
-                          <p id="movieRuntime">{movie.runtime}</p> minutos de duração.
+                          <p id="movieRuntime">{movie.runtime}</p> minutos de
+                          duração.
                         </p>
+                      </div>
+                      <div className="infoNewApi">
+                        {movie.status && (
+                          <div className="infoItem">
+                            <span className="text bold">Status: </span>
+                            <span className="text">{movie.status}</span>
+                          </div>
+                        )}
+                        {movie.release_date && (
+                          <div className="infoItem">
+                            <span className="text bold">
+                              Data de Lançamento:{" "}
+                            </span>
+                            <span className="text">
+                              {dayjs(movie.release_date).format("D MMM, YYYY")}
+                            </span>
+                          </div>
+                        )}
+                        {movie.runtime && (
+                          <div className="infoItem">
+                            <span className="text bold">Duração: </span>
+                            <span className="text">
+                              {toHoursAndMinutes(movie.runtime)}
+                            </span>
+                          </div>
+                        )}
+
+                        {movie?.created_by?.length > 0 && (
+                          <div className="info">
+                            <span className="text bold">
+                              Creator:{" "}
+                            </span>
+                            <span className="text">
+                              {movie?.created_by?.map(
+                                (d, i) => (
+                                  <span key={i}>
+                                    {d.name}
+                                    {movie?.created_by?.length - 1 !== i && ", "}
+                                  </span>
+                                )
+                              )}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </ol>
                   </li>
@@ -180,11 +248,17 @@ const Movie = () => {
                       <ol className="movieActions">
                         <div>
                           {fav[id] ? (
-                            <button className="button heart" onClick={() => removeFavoriteFilm(id)}>
+                            <button
+                              className="button heart"
+                              onClick={() => removeFavoriteFilm(id)}
+                            >
                               <i className="fas fa-heart"></i>
                             </button>
                           ) : (
-                            <button className="button heart" onClick={() => addFavoriteFilm(id)}>
+                            <button
+                              className="button heart"
+                              onClick={() => addFavoriteFilm(id)}
+                            >
                               <i className="far fa-heart"></i>
                             </button>
                           )}
@@ -200,40 +274,35 @@ const Movie = () => {
                           </button>
                         </div>
                       </ol>
-                      <div className="reviewButton" >
-                        <button onClick={() => reviewFilm(movie)}>
+                      <div className="reviewButton">
+                        <button onClick={() => reviewFilm(id)}>
                           <h2>Review</h2>
-                          </button>
-                          <Modal 
-                            isOpen={modalIsOpen}
-                            onRequestClose={closeModal}
-                            contentLabel="Example Modal"
-                            overlayClassName="modal-overlay"
-                            className="modal-content" >
-                              <h2>{movie.title}</h2>
-                              <hr />
-                              <p>
-                                Aqui vai a caixa de entrada do usuario, juntamente com as informações do filme, bem como a sua avaliação.
-                              </p>
-
-                              <button onClick={closeModal}>Fechar</button>
-                          </Modal>
-                        
-                      </div>
-                      <div className="addListButton">
-                        <button>
-                          <h2>Adicionar à Lista...</h2>
                         </button>
+                        <Modal
+                          isOpen={modalIsOpen}
+                          onRequestClose={closeModal}
+                          contentLabel="Example Modal"
+                          overlayClassName="modal-overlay"
+                          className="modal-content"
+                        >
+                          <h2>{movie.title}</h2>
+                          <hr />
+                          <p>
+                            Aqui você pode escrever sua review para o filme
+                            selecionado.
+                          </p>
+                          <button onClick={closeModal}>Fechar</button>
+                        </Modal>
                       </div>
                     </div>
                   </li>
                 </ol>
               </div>
+              <ToastContainer />
             </div>
           </>
         )}
       </div>
-      <ToastContainer />
     </div>
   );
 };
