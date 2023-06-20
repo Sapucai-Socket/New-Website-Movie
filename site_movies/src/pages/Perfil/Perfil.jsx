@@ -8,6 +8,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import { getDoc } from "firebase/firestore";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Perfil = () => {
   const [authUser, setAuthUser] = useState(null);
@@ -57,14 +59,14 @@ const Perfil = () => {
           getFav(uid);
         }
 
-        // Update favorite movies whenever authUser state changes
+        // Atualiza o filme favorito no banco de dados
         const unsubscribeFav = onSnapshot(doc(db, "users", uid), (doc) => {
           const favData = doc.data().fav;
           setFav(favData);
         });
 
         return () => {
-          unsubscribeFav(); // Unsubscribe from favorite movies listener
+          unsubscribeFav(); // Desfavorita os filmes
         };
       } else {
         navigate("/login");
@@ -151,33 +153,33 @@ const Perfil = () => {
         <h2 id="favoritos-cabecalho">FILMES FAVORITOS</h2>
 
         <div className="posterUserFavorites">
-          {Object.entries(fav).map(([key, url]) => (
-            <div className="flex-child" key={key}>
-              <Link to={`/movie/${key}`}>
-                <img
-                  src={url}
-                  alt="Imagem Favorita"
-                  className="filme-favorito"
-                />
-              </Link>
-              {/*
-              <button
-                    onClick={() => {
-                        const updatedFav = { ...fav };
-                        delete updatedFav[key];
-                        setFav(updatedFav);
-
-                        if (authUser) {
-                        updateFav(updatedFav);
-                        }
-                    }}
-                    >
-                    Remover
-                    </button>
-*/}
-            </div>
-          ))}
+          <Carousel
+            showThumbs={false}
+            showArrows={true}
+            showStatus={false}
+            emulateTouch={true}
+            infiniteLoop={fav.length > 5}
+            swipeScrollTolerance={5}
+            showIndicators={false}
+            dynamicHeight={false}
+            centerMode={true}
+            centerSlidePercentage={20}
+          >
+            {Object.entries(fav)
+              .map(([key, url]) => (
+                <div
+                  className="flex-child"
+                  key={key}
+                  onClick={() => navigate(`/movie/${key}`)}
+                >
+                  <Link to={`/movie/${key}`}>
+                    <img src={url} alt="Imagem Favorita" className="filme-favorito" />
+                  </Link>
+                </div>
+              ))}
+          </Carousel>
         </div>
+
       </div>
 
       <div id="secao-filmes-avaliados">
