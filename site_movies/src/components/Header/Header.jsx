@@ -73,10 +73,10 @@ function Header({ user_old }) {
                             {user ?
                                 <a href="/perfil" className="usuarioIcon">
                                     <img
-                                        src={user.photoURL}
+                                        src={user.photoURL ? user.photoURL : "/iconepadrao.png"}
                                         referrerPolicy="no-referrer"
                                         alt={user.displayName}
-                                        id="userIconCadastrado"
+                                        id={user.photoURL ? "userIconCadastrado" : "userNaoCadastrado"}
                                         onError={(e) => {
                                             console.log('Error loading image:', e.target.src);
                                         }}
