@@ -1,12 +1,28 @@
-import React from "react";
-import './Header.css'
-import { useState } from "react";
+import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import { auth, db } from "../../firebase";
+import { onAuthStateChanged } from "firebase/auth"
 
+import './Header.css'
 
-function Header({ user }) {
+function Header({ user_old }) {
     const [search, setSearch] = useState("")
+    const [user, setUser] = useState(null);
+
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            setUser(user);
+          }
+        });
+    
+        return () => {
+          unsubscribe();
+        };
+      }, []);
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
