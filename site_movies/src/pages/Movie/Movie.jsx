@@ -6,6 +6,7 @@ import { auth, db } from "../../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { doc, setDoc, getDoc, updateDoc, arrayRemove } from "firebase/firestore";
 import Header from "../../components/Header/Header";
+import { MdPlayArrow } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
@@ -16,6 +17,7 @@ import "./Movie.css";
 const imageUrl = import.meta.env.VITE_IMG;
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
+const youtubeBaseUrl = "https://www.youtube.com/watch?v=";
 
 const Movie = () => {
   const { id } = useParams();
@@ -25,6 +27,9 @@ const Movie = () => {
   const [review, setReview] = useState({});
   const [user, setUser] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [show, setShow] = useState(false);
+  const [videoId, setVideoId] = useState(null);
+
 
   useEffect(() => {
     const movieUrl = `${moviesURL}${id}?${apiKey}&language=pt-BR`;
@@ -148,6 +153,22 @@ const Movie = () => {
     }
   }, [user]);
 
+  const playTrailer = async () => {
+    const trailerUrl = `${moviesURL}${id}/videos?${apiKey}&language=pt-BR`;
+    const res = await fetch(trailerUrl);
+    const data = await res.json();
+
+    if (data.results && data.results.length > 0) {
+      const trailerKey = data.results[0].key;
+      const trailerUrl = youtubeBaseUrl + trailerKey;
+      window.open(trailerUrl, "_blank");
+    } else {
+      toast.error("Trailer não disponível");
+    }
+  };
+
+
+
   return (
     <div>
       <Header user={user} />
@@ -183,6 +204,14 @@ const Movie = () => {
                             {getStarRating()} {movie.vote_average}
                           </p>
                         </div>
+
+                        <div className="row">
+                          <div className="playbtn" onClick={playTrailer}>
+                            <MdPlayArrow size={36} color="557373" className="play-icon" />
+                            <span className="text"> Assista o trailer</span>
+                          </div>
+                        </div>
+
                         <p id="movieTagline" className="tagline">
                           {movie.tagline}
                         </p>
@@ -191,12 +220,7 @@ const Movie = () => {
                       <div id="description" className="info description">
                         <p>{movie.overview}</p>
                       </div>
-                      <div id="duration">
-                        <p>
-                          <p id="movieRuntime">{movie.runtime}</p> minutos de
-                          duração.
-                        </p>
-                      </div>
+
                       <div className="infoNewApi">
                         {movie.status && (
                           <div className="infoItem">
@@ -225,18 +249,14 @@ const Movie = () => {
 
                         {movie?.created_by?.length > 0 && (
                           <div className="info">
-                            <span className="text bold">
-                              Creator:{" "}
-                            </span>
+                            <span className="text bold">Creator: </span>
                             <span className="text">
-                              {movie?.created_by?.map(
-                                (d, i) => (
-                                  <span key={i}>
-                                    {d.name}
-                                    {movie?.created_by?.length - 1 !== i && ", "}
-                                  </span>
-                                )
-                              )}
+                              {movie?.created_by?.map((d, i) => (
+                                <span key={i}>
+                                  {d.name}
+                                  {movie?.created_by?.length - 1 !== i && ", "}
+                                </span>
+                              ))}
                             </span>
                           </div>
                         )}
@@ -250,14 +270,14 @@ const Movie = () => {
                           {fav[id] ? (
                             <button
                               className="button heart"
-                              onClick={() => removeFavoriteFilm(id)}
+                              onClick={() => FavoriteFilm(id)}
                             >
                               <i className="fas fa-heart"></i>
                             </button>
                           ) : (
                             <button
                               className="button heart"
-                              onClick={() => addFavoriteFilm(id)}
+                              onClick={() => FavoriteFilm(id)}
                             >
                               <i className="far fa-heart"></i>
                             </button>
@@ -294,10 +314,16 @@ const Movie = () => {
                           <button onClick={closeModal}>Fechar</button>
                         </Modal>
                       </div>
+                      <div className="reviewButton">
+                        <button >
+                          <h2>Adicionar à lista</h2>
+                        </button>
+                      </div>
                     </div>
                   </li>
                 </ol>
               </div>
+
               <ToastContainer />
             </div>
           </>
