@@ -3,8 +3,19 @@ import { useParams, useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import { auth, db } from "../../firebase";
-import { getAdditionalUserInfo, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
-import { doc, setDoc, getDoc, updateDoc, arrayRemove } from "firebase/firestore";
+import {
+  getAdditionalUserInfo,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  arrayRemove,
+} from "firebase/firestore";
 import Header from "../../components/Header/Header";
 import { MdPlayArrow } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
@@ -26,10 +37,9 @@ const Movie = () => {
   const [review, setReview] = useState({});
   const [user, setUser] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [valorInputReview, setValorInputReview] = useState('')
+  const [valorInputReview, setValorInputReview] = useState("");
   const [show, setShow] = useState(false);
   const [videoId, setVideoId] = useState(null);
-
 
   useEffect(() => {
     const movieUrl = `${moviesURL}${id}?${apiKey}&language=pt-BR`;
@@ -108,14 +118,14 @@ const Movie = () => {
       ...review,
       [id]: {
         imageUrl: imageUrl + movie.poster_path,
-        review: valorInputReview
-      }
+        review: valorInputReview,
+      },
     };
 
     const docRef = doc(db, "users", user.uid);
     setDoc(docRef, { review: updatedEnviarReview }, { merge: true });
     toast.success("Review enviado com sucesso!");
-    setIsOpen(true)
+    setIsOpen(true);
     setFav(updatedEnviarReview);
   };
   const updateFavoriteFilm = async (id, imageUrl, poster_path) => {
@@ -129,9 +139,9 @@ const Movie = () => {
           fav: {
             [id]: {
               imageUrl: imageUrl,
-              poster_path: poster_path
-            }
-          }
+              poster_path: poster_path,
+            },
+          },
         },
         { merge: true }
       );
@@ -144,14 +154,13 @@ const Movie = () => {
       await setDoc(
         docRef,
         {
-          fav: updatedFav
+          fav: updatedFav,
         },
         { merge: true }
       );
       toast.success("Filme removido dos favoritos");
     }
-  }
-  
+  };
 
   const getStarRating = () => {
     const rating = Math.round(movie.vote_average / 2);
@@ -180,18 +189,16 @@ const Movie = () => {
     return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
   };
 
-  const getFav = async(uid) => {
+  const getFav = async (uid) => {
     const docRef = doc(db, "users", uid);
     const docSnap = await getDoc(docRef);
-    const fav = docSnap.data().fav
+    const fav = docSnap.data().fav;
     //const favJson = JSON.stringify(fav, null, 3);
     //alert(`${fav["3213123"]}`);
     setFav(fav);
 
     ///TODO: acessar o fav[id] e, caso exista, mudar o coração para preenchido, senão mantem o coração sem preenchimento
-
-    
-}
+  };
 
   useEffect(() => {
     if (user) {
@@ -212,8 +219,6 @@ const Movie = () => {
       toast.error("Trailer não disponível");
     }
   };
-
-
 
   return (
     <div>
@@ -252,7 +257,11 @@ const Movie = () => {
 
                         <div className="row">
                           <div className="playbtn" onClick={playTrailer}>
-                            <MdPlayArrow size={36} color="557373" className="play-icon" />
+                            <MdPlayArrow
+                              size={36}
+                              color="557373"
+                              className="play-icon"
+                            />
                             <span className="text"> Assista o trailer</span>
                           </div>
                         </div>
@@ -312,12 +321,20 @@ const Movie = () => {
                     <div className="movieActionsBox">
                       <ol className="movieActions">
                         <div>
-                        {fav.hasOwnProperty(id) ? (
-                            <button className="button heart" onClick={() => removeFavoriteFilm(id)}>
+                          {fav.hasOwnProperty(id) ? (
+                            <button
+                              className="button heart"
+                              onClick={() => removeFavoriteFilm(id)}
+                            >
                               <i className="fas fa-heart"></i>
                             </button>
                           ) : (
-                            <button className="button heart" onClick={() => addFavoriteFilm(id, imageUrl, movie.poster_path)}>
+                            <button
+                              className="button heart"
+                              onClick={() =>
+                                addFavoriteFilm(id, imageUrl, movie.poster_path)
+                              }
+                            >
                               <i className="far fa-heart"></i>
                             </button>
                           )}
@@ -338,27 +355,45 @@ const Movie = () => {
                           <h2>Review</h2>
                         </button>
                         <Modal
-                            isOpen={modalIsOpen}
-                            onRequestClose={closeModal}
-                            contentLabel="Example Modal"
-                            overlayClassName="modal-overlay"
-                            className="modal-content"
-                          >
-                            <h2>{movie.title}</h2>
-                            <hr />
-                            <input
-                              type="text"
-                              id="inputReview"
-                              value={valorInputReview}
-                              onChange={handleChange}
-                            />
-                            <p>Review: {valorInputReview}</p>
-                            <button onClick={enviarReview}>Enviar</button>
-                            <button onClick={closeModal}>Fechar</button>
-                          </Modal>
+                          isOpen={modalIsOpen}
+                          onRequestClose={closeModal}
+                          contentLabel="Example Modal"
+                          overlayClassName="modal-overlay"
+                          className="modal-content"
+                        >
+                          <ol className="modalList">
+                            <li>
+                              <img
+                                id="movieModalPoster"
+                                src={imageUrl + movie.poster_path}
+                                alt={movie.title}
+                              />
+                            </li>
+                            <li>
+                              <div>
+                                <h2>{movie.title}</h2>
+                                <hr />
+                                <textarea
+                                  type="text"
+                                  id="inputReview"
+                                  value={valorInputReview}
+                                  onChange={handleChange}
+                                  placeholder="Escreva a sua Review..."
+                                />
+                                <p>Review: {valorInputReview}</p>
+                                <button onClick={enviarReview} id="sendReview">
+                                  Enviar
+                                </button>
+                                <button onClick={closeModal} id="closeReview">
+                                  Fechar
+                                </button>
+                              </div>
+                            </li>
+                          </ol>
+                        </Modal>
                       </div>
                       <div className="reviewButton">
-                        <button >
+                        <button>
                           <h2>Adicionar à lista</h2>
                         </button>
                       </div>
