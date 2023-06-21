@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import { auth, db } from "../../firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { getAdditionalUserInfo, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import { doc, setDoc, getDoc, updateDoc, arrayRemove } from "firebase/firestore";
 import Header from "../../components/Header/Header";
 import { MdPlayArrow } from "react-icons/md";
@@ -11,7 +11,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
 import dayjs from "dayjs";
-
 import "./Movie.css";
 
 const imageUrl = import.meta.env.VITE_IMG;
@@ -100,13 +99,40 @@ const Movie = () => {
     setIsOpen(false);
   }
 
-  const updateFavoriteFilm = (id) => {
-    if (fav.hasOwnProperty(id)) {
-      removeFavoriteFilm(id);
+  const updateFavoriteFilm = async (id, imageUrl, poster_path) => {
+    // Se o filme não estiver favoritado
+    if (!fav.hasOwnProperty(id)) {
+      // Adicionar aos favoritos
+      const docRef = doc(db, "users", user.uid);
+      await setDoc(
+        docRef,
+        {
+          fav: {
+            [id]: {
+              imageUrl: imageUrl,
+              poster_path: poster_path
+            }
+          }
+        },
+        { merge: true }
+      );
+      toast.success("Filme adicionado aos favoritos");
     } else {
-      addFavoriteFilm(id);
+      // O que você deseja fazer quando o filme já estiver favoritado?
+      const updatedFav = { ...fav };
+      delete updatedFav[id];
+      const docRef = doc(db, "users", user.uid);
+      await setDoc(
+        docRef,
+        {
+          fav: updatedFav
+        },
+        { merge: true }
+      );
+      toast.success("Filme removido dos favoritos");
     }
-  };
+  }
+  
 
   const getStarRating = () => {
     const rating = Math.round(movie.vote_average / 2);
@@ -135,17 +161,18 @@ const Movie = () => {
     return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
   };
 
-  const getFav = async (uid) => {
+  const getFav = async(uid) => {
     const docRef = doc(db, "users", uid);
     const docSnap = await getDoc(docRef);
-    const userData = docSnap.data();
+    const fav = docSnap.data().fav
+    //const favJson = JSON.stringify(fav, null, 3);
+    //alert(`${fav["3213123"]}`);
+    setFav(fav);
 
-    if (userData && userData.fav) {
-      setFav(userData.fav);
-    } else {
-      setFav({});
-    }
-  };
+    ///TODO: acessar o fav[id] e, caso exista, mudar o coração para preenchido, senão mantem o coração sem preenchimento
+
+    
+}
 
   useEffect(() => {
     if (user) {
@@ -266,18 +293,12 @@ const Movie = () => {
                     <div className="movieActionsBox">
                       <ol className="movieActions">
                         <div>
-                          {fav[id] ? (
-                            <button
-                              className="button heart"
-                              onClick={() => FavoriteFilm(id)}
-                            >
+                        {fav.hasOwnProperty(id) ? (
+                            <button className="button heart" onClick={() => removeFavoriteFilm(id)}>
                               <i className="fas fa-heart"></i>
                             </button>
                           ) : (
-                            <button
-                              className="button heart"
-                              onClick={() => FavoriteFilm(id)}
-                            >
+                            <button className="button heart" onClick={() => addFavoriteFilm(id, imageUrl, movie.poster_path)}>
                               <i className="far fa-heart"></i>
                             </button>
                           )}
