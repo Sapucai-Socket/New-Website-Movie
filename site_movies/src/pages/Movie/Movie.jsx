@@ -171,7 +171,6 @@ const Movie = () => {
 
   return (
     <div>
-      <Header user={user} />
       <div className="movie-page">
         {movie && (
           <>

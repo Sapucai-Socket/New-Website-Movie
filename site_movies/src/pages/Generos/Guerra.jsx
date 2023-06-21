@@ -124,7 +124,6 @@ const Guerra = () => {
     return (
         <div className="container">
             <ToastContainer />
-            <Header user={authUser} />
             <div className="welcomeUser" style={{ textAlign: "center" }}>
                 {authUser ? (
                     <>
