@@ -98,111 +98,73 @@ const Perfil = () => {
 
   return (
     <div className="wrapperProfile">
-      <div className="profileContainer">
-        <div className="pfpImage">
-          {authUser?.photoURL ? (
-            <img id="pfp" src={authUser.photoURL} alt="Perfil" />
-          ) : (
-            <img src="/iconepadrao.png" alt="png" id="userPadrao" />
-          )}
+      <ol className="userSection">
+        <li>
+          <div className="profileContainer">
+            <div className="pfpImage">
+              {authUser?.photoURL ? (
+                <img id="pfp" src={authUser.photoURL} alt="Perfil" />
+              ) : (
+                <img src="/iconepadrao.png" alt="png" id="userPadrao" />
+              )}
+            </div>
+            <div>
+              <h1 id="nomeUsuario">
+                {!authUser?.displayName ? nome : authUser.displayName}
+              </h1>
+              <i id="descUsuario">{descricao}</i>
+            </div>
+          </div>
+        </li>
+        <li>
+        <div className="userStat">
+            <ol className="userStatOl">
+              <li><span className="quantity">{Object.keys(fav).length}</span></li>
+              <li><span className="parameter">Filmes Registrados</span></li>
+            </ol>
         </div>
-        <div>
-          <h1 id="nomeUsuario">
-            {!authUser?.displayName ? nome : authUser.displayName}
-          </h1>
-          <i id="descUsuario">{descricao}</i>
+        </li>
+      </ol>
+      
+      <div className="userFavourites">
+        <div className="userFavouritesData">
+          <h2 id="favoritos-cabecalho">FILMES FAVORITOS</h2>
+
+          <div className="posterUserFavourites">
+            <Carousel
+              showThumbs={false}
+              showArrows={true}
+              showStatus={false}
+              emulateTouch={true}
+              infiniteLoop={fav.length > 5}
+              swipeScrollTolerance={5}
+              showIndicators={false}
+              dynamicHeight={false}
+              centerMode={true}
+              centerSlidePercentage={20}
+            >
+              {Object.entries(fav)
+                .map(([key, url]) => (
+                  <div
+                    className="flex-child"
+                    key={key}
+                    onClick={() => navigate(`/movie/${key}`)}
+                  >
+                    <Link to={`/movie/${key}`}>
+                      <img src={url} alt="Imagem Favorita" className="filme-favorito" />
+                    </Link>
+                  </div>
+                ))}
+            </Carousel>
+          </div>
+
         </div>
       </div>
-
-      <div className="otherUserInfos">
-        <div className="otherUserInfo">
-          <span className="quantity">{Object.keys(fav).length}</span>
-          <br />
-          <span className="parameter">FILMES</span>
-        </div>
-        <div className="vertical-line"></div>
-
-        <div className="otherUserInfo">
-          <span className="quantity">23</span>
-          <br />
-          <span className="parameter">ESTE ANO</span>
-        </div>
-        <div className="vertical-line"></div>
-
-        <div className="otherUserInfo">
-          <span className="quantity">3</span>
-          <br />
-          <span className="parameter">LISTAS</span>
-        </div>
-        <div className="vertical-line"></div>
-        <div className="otherUserInfo">
-          <span className="quantity">1</span>
-          <br />
-          <span className="parameter">SEGUINDO</span>
-        </div>
-        <div className="vertical-line"></div>
-
-        <div className="otherUserInfo">
-          <span className="quantity">4</span>
-          <br />
-          <span className="parameter">SEGUIDORES</span>
-        </div>
-      </div>
-      <div id="favoritos">
-        <h2 id="favoritos-cabecalho">FILMES FAVORITOS</h2>
-
-        <div className="posterUserFavorites">
-          <Carousel
-            showThumbs={false}
-            showArrows={true}
-            showStatus={false}
-            emulateTouch={true}
-            infiniteLoop={fav.length > 5}
-            swipeScrollTolerance={5}
-            showIndicators={false}
-            dynamicHeight={false}
-            centerMode={true}
-            centerSlidePercentage={20}
-          >
-            {Object.entries(fav)
-              .map(([key, url]) => (
-                <div
-                  className="flex-child"
-                  key={key}
-                  onClick={() => navigate(`/movie/${key}`)}
-                >
-                  <Link to={`/movie/${key}`}>
-                    <img src={url} alt="Imagem Favorita" className="filme-favorito" />
-                  </Link>
-                </div>
-              ))}
-          </Carousel>
-        </div>
-
-      </div>
-
+      
       <div id="secao-filmes-avaliados">
         <h2 id="avaliacoes-cabecalho">REVIEWS</h2>
-
-        <div id="filme-poster-avaliado">
-          <a href="#">
-            <img
-              className="filme-avaliado"
-              src="https://image.tmdb.org/t/p/original/MbP1pIUKQcZaC1XCwSomuiLrva.jpg"
-              alt="Filme Avaliado"
-            />
-          </a>
-        </div>
-        <div id="infos-avaliacao">
-          <span id="titulo-filme-avaliado">Bullet Train</span>
-          <span id="ano-filme-avaliado">2022</span>
-          <br />
-          <span id="estrelas-filme-avaliado">★</span>
-          <br />
-          <span id="review-filme-avaliado">
-            Filme bem divertid, ótimas cenas de ação. O filme fica meio
-            chatinho em algumas partes, mas é legal de forma geral.
-          </span>
+        <div>
+          <p>Este usuário não fez nenhuma avaliação.</p>
         </div>
       </div>
       <ToastContainer />
