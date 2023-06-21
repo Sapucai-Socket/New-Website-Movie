@@ -197,10 +197,10 @@ const Perfil = () => {
           <span id="titulo-filme-avaliado">Bullet Train</span>
           <span id="ano-filme-avaliado">2022</span>
           <br />
-          <span id="estrelas-filme-avaliado">★★</span>
+          <span id="estrelas-filme-avaliado">★</span>
           <br />
           <span id="review-filme-avaliado">
-            Filme bem divertido, ótimas cenas de ação. O filme fica meio
+            Filme bem divertid, ótimas cenas de ação. O filme fica meio
             chatinho em algumas partes, mas é legal de forma geral.
           </span>
         </div>
