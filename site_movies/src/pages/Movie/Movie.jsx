@@ -26,6 +26,7 @@ const Movie = () => {
   const [review, setReview] = useState({});
   const [user, setUser] = useState(null);
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [valorInputReview, setValorInputReview] = useState('')
   const [show, setShow] = useState(false);
   const [videoId, setVideoId] = useState(null);
 
@@ -98,7 +99,25 @@ const Movie = () => {
   function closeModal() {
     setIsOpen(false);
   }
+  const handleChange = (event) => {
+    setValorInputReview(event.target.value);
+  };
 
+  const enviarReview = () => {
+    const updatedEnviarReview = {
+      ...review,
+      [id]: {
+        imageUrl: imageUrl + movie.poster_path,
+        review: valorInputReview
+      }
+    };
+
+    const docRef = doc(db, "users", user.uid);
+    setDoc(docRef, { review: updatedEnviarReview }, { merge: true });
+    toast.success("Review enviado com sucesso!");
+    setIsOpen(true)
+    setFav(updatedEnviarReview);
+  };
   const updateFavoriteFilm = async (id, imageUrl, poster_path) => {
     // Se o filme não estiver favoritado
     if (!fav.hasOwnProperty(id)) {
@@ -319,20 +338,24 @@ const Movie = () => {
                           <h2>Review</h2>
                         </button>
                         <Modal
-                          isOpen={modalIsOpen}
-                          onRequestClose={closeModal}
-                          contentLabel="Example Modal"
-                          overlayClassName="modal-overlay"
-                          className="modal-content"
-                        >
-                          <h2>{movie.title}</h2>
-                          <hr />
-                          <p>
-                            Aqui você pode escrever sua review para o filme
-                            selecionado.
-                          </p>
-                          <button onClick={closeModal}>Fechar</button>
-                        </Modal>
+                            isOpen={modalIsOpen}
+                            onRequestClose={closeModal}
+                            contentLabel="Example Modal"
+                            overlayClassName="modal-overlay"
+                            className="modal-content"
+                          >
+                            <h2>{movie.title}</h2>
+                            <hr />
+                            <input
+                              type="text"
+                              id="inputReview"
+                              value={valorInputReview}
+                              onChange={handleChange}
+                            />
+                            <p>Review: {valorInputReview}</p>
+                            <button onClick={enviarReview}>Enviar</button>
+                            <button onClick={closeModal}>Fechar</button>
+                          </Modal>
                       </div>
                       <div className="reviewButton">
                         <button >
