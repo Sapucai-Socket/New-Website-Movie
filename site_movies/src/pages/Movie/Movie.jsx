@@ -39,6 +39,24 @@ const Movie = () => {
   };
 
   useEffect(() => {
+    // ...
+
+    const getUserReviews = async () => {
+      if (user) {
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+        const userData = docSnap.data();
+        if (userData && userData.review) {
+          setReviews(userData.review);
+        }
+      }
+    };
+
+    getUserReviews();
+
+    // ...
+  }, []);
+  useEffect(() => {
     const movieUrl = `${moviesURL}${id}?${apiKey}&language=pt-BR`;
     getMovie(movieUrl);
 
@@ -329,21 +347,20 @@ const Movie = () => {
                           <div className="userReview">
                             <img
                               className="userPhoto"
-                              src={user.authUser?.photoURL}
+                              src={user.authUser?.photoURL} // Add the photoUrl here
                               alt={reviews[id].displayName}
                             />
                             <div className="userInfo">
                               <p className="userName">{user.displayName}</p>
-                              <div className="reviewRating">
-                                <Rating
-                                  value={reviews[id].rating}
-                                  edit={false}
-                                  size={20}
-                                  activeColor="#ffd700"
-                                  emptyIcon={<i className="far fa-star"></i>}
-                                  filledIcon={<i className="fas fa-star"></i>}
+                              <p className="userRating">
+                                <StarRatings
+                                  rating={reviews[id].rating}
+                                  starRatedColor="#ecab3c"
+                                  numberOfStars={5}
+                                  starDimension="20px"
+                                  starSpacing="2px"
                                 />
-                              </div>
+                              </p>
                               <p className="userComment">{reviews[id].review}</p>
                             </div>
                           </div>

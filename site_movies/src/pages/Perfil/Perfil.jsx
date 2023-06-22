@@ -6,6 +6,7 @@ import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import { collection, getDocs, setDoc, doc, onSnapshot } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getAdditionalUserInfo} from "firebase/auth";
 import { Link } from "react-router-dom";
 import { getDoc } from "firebase/firestore";
 import { Carousel } from "react-responsive-carousel";
