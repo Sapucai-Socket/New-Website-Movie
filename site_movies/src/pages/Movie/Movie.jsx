@@ -3,19 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import { auth, db } from "../../firebase";
-import {
-  getAdditionalUserInfo,
-  onAuthStateChanged,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
-import {
-  doc,
-  setDoc,
-  getDoc,
-  updateDoc,
-  arrayRemove,
-} from "firebase/firestore";
+import { getAdditionalUserInfo, onAuthStateChanged, signInWithPopup, signOut, } from "firebase/auth";
+import { doc, setDoc, getDoc, updateDoc, arrayRemove, } from "firebase/firestore";
+import StarRatings from 'react-star-ratings';
 import Header from "../../components/Header/Header";
 import { MdPlayArrow } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
@@ -40,6 +30,11 @@ const Movie = () => {
   const [valorInputReview, setValorInputReview] = useState("");
   const [show, setShow] = useState(false);
   const [videoId, setVideoId] = useState(null);
+  const [valueStarRating, setValueStarRating] = useState(0);
+
+  const handleStarRatingChange = (newRating) => {
+    setValueStarRating(newRating);
+  };
 
   useEffect(() => {
     const movieUrl = `${moviesURL}${id}?${apiKey}&language=pt-BR`;
@@ -101,7 +96,6 @@ const Movie = () => {
 
     const docRef = doc(db, "users", user.uid);
     await setDoc(docRef, { review: updatedReview }, { merge: true });
-    toast.success("Filme adicionado aos favoritos");
     setIsOpen(true);
     setReview(updatedReview);
   };
@@ -119,6 +113,7 @@ const Movie = () => {
       [id]: {
         imageUrl: imageUrl + movie.poster_path,
         review: valorInputReview,
+        rating: valueStarRating,
       },
     };
 
@@ -380,7 +375,15 @@ const Movie = () => {
                                   onChange={handleChange}
                                   placeholder="Escreva a sua Review..."
                                 />
-                                <p>Review: {valorInputReview}</p>
+                                <p>Review:</p>
+                                <StarRatings
+                                  rating={valueStarRating}
+                                  starRatedColor="#ecab3c"
+                                  changeRating={handleStarRatingChange}
+                                  numberOfStars={5}
+                                  starDimension="25px"
+                                  starSpacing="2px"
+                                />
                                 <button onClick={enviarReview} id="sendReview">
                                   Enviar
                                 </button>

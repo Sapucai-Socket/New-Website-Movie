@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { getDoc } from "firebase/firestore";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import Rating from "react-rating-stars-component";
 
 const Perfil = () => {
   const [authUser, setAuthUser] = useState(null);
@@ -125,15 +126,15 @@ const Perfil = () => {
           </div>
         </li>
         <li>
-        <div className="userStat">
+          <div className="userStat">
             <ol className="userStatOl">
               <li><span className="quantity">{Object.keys(fav).length}</span></li>
               <li><span className="parameter">Filmes Registrados</span></li>
             </ol>
-        </div>
+          </div>
         </li>
       </ol>
-      
+
       <div className="userFavourites">
         <div className="userFavouritesData">
           <h2 id="favoritos-cabecalho">FILMES FAVORITOS</h2>
@@ -168,10 +169,10 @@ const Perfil = () => {
 
         </div>
       </div>
-      
+
       <div id="secao-filmes-avaliados">
         <h2 id="avaliacoes-cabecalho">REVIEWS</h2>
-        {Object.entries(review).map(([id, { review, imageUrl, title, year, rating}]) => (
+        {Object.entries(review).map(([id, { review, imageUrl, title, year, rating }]) => (
           <div key={id} className="">
             <a href={`/movie/${id}`}>
               <img
@@ -184,15 +185,22 @@ const Perfil = () => {
               <span id="titulo-filme-avaliado">{title}</span>
               <span id="ano-filme-avaliado">{year}</span>
               <br />
-              <span id="estrelas-filme-avaliado">{rating}</span>
+              <Rating
+                value={rating}
+                edit={false}
+                size={20}
+                activeColor="#ffd700"
+                emptyIcon={<i className="far fa-star"></i>}
+                filledIcon={<i className="fas fa-star"></i>}
+              />
               <br />
               <span id="review-filme-avaliado">
                 {review}
               </span>
             </div>
           </div>
-          
-        ))}    
+
+        ))}
       </div>
       <ToastContainer />
     </div>

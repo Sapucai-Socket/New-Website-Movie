@@ -17,6 +17,7 @@ h2 {
   padding: 15px 0;
   display: flex;
 }
+
 .infoItem {
   margin-right: 10px;
   display: flex;
@@ -28,6 +29,7 @@ h2 {
   opacity: 0.5;
   line-height: 24px;
 }
+
 .bold {
   font-weight: 600;
   opacity: 1;
@@ -62,11 +64,9 @@ h2 {
 
 .backgroundMovieShadow {
   position: relative;
-  background: linear-gradient(
-    360deg,
-    #0d0d0d 28.45%,
-    rgba(13, 13, 13, 0) 59.33%
-  );
+  background: linear-gradient(360deg,
+      #0d0d0d 28.45%,
+      rgba(13, 13, 13, 0) 59.33%);
 
   margin-top: -200px;
   width: 950px;
@@ -225,6 +225,7 @@ h2 {
 
 #movieModalPoster {
   width: 150px;
+  
 }
 
 .modal-overlay {
@@ -239,19 +240,24 @@ h2 {
   align-items: center;
   justify-content: center;
   background: #000000bc;
+
 }
 
 .modal-content {
   width: 90%;
   max-width: 790px;
   background-color: #2e2c2c;
-  padding: 10px;
-  border-radius: 7px;
+  padding: 20px;
+  border-radius: 20px;
   color: #f2efea;
+  border: 2px solid #615b5b;
+  box-shadow: 27px 26px 100px 10px #000000,
+    -27px -26px 100px 10px rgba(242, 239, 234, 0.04);
+  border-radius: 7px;
 }
 
 .modal-content textarea {
-  width: 550px;
+  width: 450px;
   height: 250px;
   margin-top: 7px;
   text-align: left;
@@ -292,6 +298,7 @@ h2 {
   border-color: #557373;
   color: #557373;
 }
+
 #sendReview:hover {
   background-color: #557373;
   color: #f2efea;
@@ -303,6 +310,7 @@ h2 {
   border-color: #bd4f4f;
   color: #bd4f4f;
 }
+
 #closeReview:hover {
   background-color: #bd4f4f;
   color: #f2efea;
