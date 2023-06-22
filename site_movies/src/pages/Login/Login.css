@@ -205,3 +205,21 @@
 .terms a:hover {
     text-decoration: underline;
 }
+
+
+@media (max-width: 414px) and (max-height: 896px) {
+    /* CSS rules for viewport size of 360x640 or smaller */
+    .body-login {
+        background-image: none;
+    }
+    .login_body {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .support {
+        display: flex;
+        flex-direction: column;
+    }
+  }
