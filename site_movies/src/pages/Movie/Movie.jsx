@@ -21,6 +21,7 @@ const youtubeBaseUrl = "https://www.youtube.com/watch?v=";
 
 const Movie = () => {
   const { id } = useParams();
+  const [authUser, setAuthUser] = useState(null);
   const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const [fav, setFav] = useState({});
@@ -31,6 +32,7 @@ const Movie = () => {
   const [show, setShow] = useState(false);
   const [videoId, setVideoId] = useState(null);
   const [valueStarRating, setValueStarRating] = useState(0);
+  const [reviews, setReviews] = useState({});
 
   const handleStarRatingChange = (newRating) => {
     setValueStarRating(newRating);
@@ -119,7 +121,7 @@ const Movie = () => {
           year: movie.release_date.split("-")[0]
         }
       };
-  
+
       const docRef = doc(db, "users", user.uid);
       setDoc(docRef, { review: updatedEnviarReview }, { merge: true });
       toast.success("Review enviado com sucesso!");
@@ -316,6 +318,32 @@ const Movie = () => {
                           </div>
                         )}
                       </div>
+                      <div id="user-review">
+                        {user && reviews[id] && (
+                          <div className="userReview">
+                            <img
+                              className="userPhoto"
+                              src={user.authUser?.photoURL}
+                              alt={reviews[id].displayName}
+                            />
+                            <div className="userInfo">
+                              <p className="userName">{user.displayName}</p>
+                              <div className="reviewRating">
+                                <Rating
+                                  value={reviews[id].rating}
+                                  edit={false}
+                                  size={20}
+                                  activeColor="#ffd700"
+                                  emptyIcon={<i className="far fa-star"></i>}
+                                  filledIcon={<i className="fas fa-star"></i>}
+                                />
+                              </div>
+                              <p className="userComment">{reviews[id].review}</p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
                     </ol>
                   </li>
                   <li>

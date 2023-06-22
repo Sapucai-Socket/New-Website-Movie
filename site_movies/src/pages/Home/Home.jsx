@@ -11,7 +11,7 @@ import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import Stack from "@mui/material/Stack";
-
+import { Carousel } from "react-responsive-carousel";
 
 const moviesURL = import.meta.env.VITE_API;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -81,6 +81,7 @@ const Home = () => {
     const [topMovies, setTopMovies] = useState([]);
     const [authUser, setAuthUser] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
+    const [miniCarouselSlideIndex, setMiniCarouselSlideIndex] = useState(0); // Estado para controlar o slide selecionado no mini carousel
 
     const getTopRatedMovies = async (url) => {
         const res = await fetch(url);
@@ -120,6 +121,8 @@ const Home = () => {
         setCurrentPage(page);
     };
 
+    const filteredMovies = topMovies.filter((movie) => movie.id === 16);
+
     return (
         <div className="container">
             <ToastContainer />
@@ -151,6 +154,36 @@ const Home = () => {
                         <div className="movie-container">
                             {topMovies.length > 0 &&
                                 topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} type={0} carussel={1} />)}
+                            <div className="miniCarousel">
+                                <div className="miniCarousel-inside">
+                                    <h2 id="populares-cabecalho">FILMES POPULARES</h2>
+
+                                    <div className="posterMoviesPopulars">
+                                        <Carousel
+                                            selectedIndex={miniCarouselSlideIndex} // Definindo o slide selecionado
+                                            showThumbs={false}
+                                            showArrows={true}
+                                            showStatus={false}
+                                            emulateTouch={true}
+                                            infiniteLoop={filteredMovies.length > 5}
+                                            swipeScrollTolerance={5}
+                                            showIndicators={false}
+                                            dynamicHeight={false}
+                                            centerMode={true}
+                                            centerSlidePercentage={20}
+                                            onChange={(index) => setMiniCarouselSlideIndex(index)} // Atualiza o estado quando o slide muda
+                                        >
+                                            {topMovies.map((movie) => (
+                                                <Link key={movie.id} to={`/movie/${movie.id}`}>
+                                                    <div>
+                                                        <img src={imageUrl + movie.backdrop_path} alt="Movie Backdrop" />
+                                                    </div>
+                                                </Link>
+                                            ))}
+                                        </Carousel>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <br />
                         <br />
