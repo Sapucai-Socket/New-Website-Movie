@@ -108,20 +108,26 @@ const Movie = () => {
   };
 
   const enviarReview = () => {
-    const updatedEnviarReview = {
-      ...review,
-      [id]: {
-        imageUrl: imageUrl + movie.poster_path,
-        review: valorInputReview,
-        rating: valueStarRating,
-      },
-    };
-
-    const docRef = doc(db, "users", user.uid);
-    setDoc(docRef, { review: updatedEnviarReview }, { merge: true });
-    toast.success("Review enviado com sucesso!");
-    setIsOpen(true);
-    setFav(updatedEnviarReview);
+    if (valorInputReview.trim() !== "") {
+      const updatedEnviarReview = {
+        ...review,
+        [id]: {
+          title: movie.title,
+          imageUrl: imageUrl + movie.poster_path,
+          review: valorInputReview,
+          rating: valueStarRating,
+          year: movie.release_date.split("-")[0]
+        }
+      };
+  
+      const docRef = doc(db, "users", user.uid);
+      setDoc(docRef, { review: updatedEnviarReview }, { merge: true });
+      toast.success("Review enviado com sucesso!");
+      setIsOpen(true);
+      setFav(updatedEnviarReview);
+    } else {
+      toast.error("Não é possivel enviar o seu review, pois o campo está vazio!");
+    }
   };
   const updateFavoriteFilm = async (id, imageUrl, poster_path) => {
     // Se o filme não estiver favoritado
