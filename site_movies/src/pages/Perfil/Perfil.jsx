@@ -91,7 +91,7 @@ const Perfil = () => {
     try {
       await signOut(auth);
       navigate("/");
-      toast.success("Usuário desconectado");
+
     } catch (error) {
       console.log("Erro ao fazer logout:", error);
     }
@@ -117,6 +117,7 @@ const Perfil = () => {
                 <img src="/iconepadrao.png" alt="png" id="userPadrao" />
               )}
             </div>
+            <img src="icone-sair.png" className="svg-log-out" onClick={handleLogout}></img>
             <div>
               <h1 id="nomeUsuario">
                 {!authUser?.displayName ? nome : authUser.displayName}

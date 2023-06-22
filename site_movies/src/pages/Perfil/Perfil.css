@@ -199,3 +199,11 @@
     font-size: large;
     overflow-wrap: break-word;
 }
+
+.svg-log-out {
+    width: 25px;
+    height: 25px;
+    position: relative;
+    left: -80px;
+    top:40px
+}
