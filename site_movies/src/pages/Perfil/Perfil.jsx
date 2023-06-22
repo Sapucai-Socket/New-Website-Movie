@@ -16,6 +16,7 @@ const Perfil = () => {
   const [nome, setNome] = useState("");
   const [descricao, setDescricao] = useState("");
   const [fav, setFav] = useState({});
+  const [review, setReview] = useState({});
   const [favLoaded, setFavLoaded] = useState(false); // Estado para rastrear se os dados dos filmes favoritos foram buscados
   const navigate = useNavigate();
 
@@ -41,6 +42,12 @@ const Perfil = () => {
     setFavLoaded(true); // Indicar que os dados dos filmes favoritos foram buscados
   };
 
+  const getReview = async (uid) => {
+    const docRef = doc(db, "users", uid);
+    const docSnap = await getDoc(docRef);
+    const review = docSnap.data().review;
+    setReview(review);
+  };
   const updateFav = async (updatedFav) => {
     const docRef = doc(db, "users", authUser.uid);
     await setDoc(docRef, { fav: updatedFav });
@@ -57,6 +64,7 @@ const Perfil = () => {
         if (!favLoaded) {
           // Buscar os filmes favoritos somente se ainda não foram buscados
           getFav(uid);
+          getReview(uid)
         }
 
         // Atualiza o filme favorito no banco de dados
@@ -163,9 +171,28 @@ const Perfil = () => {
       
       <div id="secao-filmes-avaliados">
         <h2 id="avaliacoes-cabecalho">REVIEWS</h2>
-        <div>
-          <p>Este usuário não fez nenhuma avaliação.</p>
-        </div>
+        {Object.entries(review).map(([id, { review, imageUrl, title, year, rating}]) => (
+          <div key={id} className="">
+            <a href={`/movie/${id}`}>
+              <img
+                className="filme-avaliado"
+                src={imageUrl}
+                alt="Filme Avaliado"
+              />
+            </a>
+            <div id="infos-avaliacao">
+              <span id="titulo-filme-avaliado">{title}</span>
+              <span id="ano-filme-avaliado">{year}</span>
+              <br />
+              <span id="estrelas-filme-avaliado">{rating}</span>
+              <br />
+              <span id="review-filme-avaliado">
+                {review}
+              </span>
+            </div>
+          </div>
+          
+        ))}    
       </div>
       <ToastContainer />
     </div>
