@@ -10,6 +10,7 @@ h2 {
   width: 950px;
   color: #f2efea;
   font-weight: lighter;
+  margin-bottom: 80px;
 }
 
 .infoNewApi {
@@ -245,24 +246,21 @@ h2 {
 
 .modal-content {
   width: 90%;
-  max-width: 790px;
-  background-color: #2e2c2c;
+  max-width: 705px;
+  background-color: #0d0d0d;
   padding: 20px;
   border-radius: 20px;
   color: #f2efea;
-  border: 2px solid #615b5b;
-  box-shadow: 27px 26px 100px 10px #000000,
-    -27px -26px 100px 10px rgba(242, 239, 234, 0.04);
   border-radius: 7px;
 }
 
 .modal-content textarea {
-  width: 450px;
+  width: 472px;
   height: 250px;
   margin-top: 7px;
   text-align: left;
   resize: none;
-  background-color: #474444;
+  background-color: #262525;
   border-radius: 7px;
   border: none;
   padding: 10px 12px;
@@ -270,6 +268,7 @@ h2 {
   font-weight: lighter;
   color: #bdbaba;
   font-size: 17px;
+  outline: none;
 }
 
 .playbtn {

@@ -21,7 +21,7 @@
 
 .userSection li{
     padding: 5px;
-    margin-inline: 70px;
+    margin-inline: 50px;
 }
 
 .userData {
@@ -49,12 +49,12 @@
 #nomeUsuario {
     
     font-weight: bolder;
-    color: white;
+    color: #f2efea;
 }
 
 #descUsuario {
     
-    color: white;
+    color: #f2efea;
 }
 
 
@@ -122,6 +122,25 @@
     cursor: pointer;
 }
 
+.profileReview{
+    padding: 10px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #1f1f1f;
+    overflow-wrap: break-word;
+}
+
+.profileReviewOl{
+    display: flex;
+    justify-content: left;
+    list-style: none;
+    width: 720px;
+    padding: 10px;
+}
+
+.reviewRating{
+    margin-top: 5px;
+    margin-left: 30px;
+}
 
 #secao-filmes-avaliados {
     width: 950px;
@@ -134,8 +153,8 @@
     /* width | style | color */
     border-radius: 5px;
     border: 1px solid grey;
-    width: 154px;
-    height: 229px;
+    width: 98px;
+    height: 145px;
 }
 
 #avaliacoes-cabecalho {
@@ -155,6 +174,7 @@
     overflow: hidden;
     max-width: 890px;
     color: white;
+    max-width: 720px;
 }
 
 #titulo-filme-avaliado {
@@ -177,4 +197,5 @@
     display: block;
     margin-left: 30px;
     font-size: large;
+    overflow-wrap: break-word;
 }

@@ -173,33 +173,44 @@ const Perfil = () => {
       <div id="secao-filmes-avaliados">
         <h2 id="avaliacoes-cabecalho">REVIEWS</h2>
         {Object.entries(review).map(([id, { review, imageUrl, title, year, rating }]) => (
-          <div key={id} className="">
-            <a href={`/movie/${id}`}>
-              <img
-                className="filme-avaliado"
-                src={imageUrl}
-                alt="Filme Avaliado"
-              />
-            </a>
-            <div id="infos-avaliacao">
-              <span id="titulo-filme-avaliado">{title}</span>
-              <span id="ano-filme-avaliado">{year}</span>
-              <br />
-              <Rating
-                value={rating}
-                edit={false}
-                size={20}
-                activeColor="#ffd700"
-                emptyIcon={<i className="far fa-star"></i>}
-                filledIcon={<i className="fas fa-star"></i>}
-              />
-              <br />
-              <span id="review-filme-avaliado">
-                {review}
-              </span>
-            </div>
-          </div>
+          <div key={id} className="profileReview">
+            <ol className="profileReviewOl">
+              <li>
+                <div className="posterReview">
+                  <a href={`/movie/${id}`}>
+                    <img
+                      className="filme-avaliado"
+                      src={imageUrl}
+                      alt="Filme Avaliado"
+                    />
+                  </a>
+                </div>
+              </li>
+              
+              <li>
+                <div id="infos-avaliacao">
+                  <span id="titulo-filme-avaliado">{title}</span>
+                  <span id="ano-filme-avaliado">{year}</span>
+                  <br />
+                  <div className="reviewRating">
+                    <Rating
+                      value={rating}
+                      edit={false}
+                      size={20}
+                      activeColor="#ffd700"
+                      emptyIcon={<i className="far fa-star"></i>}
+                      filledIcon={<i className="fas fa-star"></i>}
+                    />                    
+                  </div>
+                  <br />
+                  <span id="review-filme-avaliado">
+                    {review}
+                  </span>
+                </div>                
+              </li>
 
+            </ol>
+          </div>
         ))}
       </div>
       <ToastContainer />

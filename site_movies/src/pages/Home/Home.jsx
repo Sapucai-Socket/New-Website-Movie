@@ -131,6 +131,7 @@ const Home = () => {
                             <h1>
                                 Bem-Vindo! <a href="/perfil">{authUser.displayName}</a>. Aqui está o que temos assistido...
                             </h1>
+                            <button onClick={userSignOut}>Desconectar</button>
                         </div>
                     </>
                 ) : (
