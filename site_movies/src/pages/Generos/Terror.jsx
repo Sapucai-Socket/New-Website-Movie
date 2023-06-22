@@ -132,9 +132,7 @@ const Terror = () => {
                             <h1>
                                 Bem-Vindo! <a href="/perfil">{authUser.displayName}</a>. Aqui está o que temos assistido...
                             </h1>
-                            <h4>Nome: {authUser.displayName}</h4>
-                            <p>{`Conectado como ${authUser.email}`}</p>
-                            <button onClick={userSignOut}>Desconectar</button>
+
                         </div>
                     </>
                 ) : (
@@ -147,7 +145,7 @@ const Terror = () => {
                 <section id="populares">
                     <div className="lista">
                         <div className="title">
-                            <h2>Populares na Ciné</h2>
+                            <h2>Filmes de Terror</h2>
                             <a href="#">Ver Lista</a>
                         </div>
                         <hr />

@@ -133,7 +133,7 @@
     display: flex;
     justify-content: left;
     list-style: none;
-    width: 720px;
+    max-width: 920px;
     padding: 10px;
 }
 
@@ -174,13 +174,15 @@
     overflow: hidden;
     max-width: 890px;
     color: white;
-    max-width: 720px;
+
 }
 
 #titulo-filme-avaliado {
-    font-size: xx-large;
+    font-size: 30px;
     font-weight: bold;
-    margin-left: 30px;
+    margin-left: 30px;    
+    overflow-wrap: break-word;
+    max-width: 720px;
 }
 
 #ano-filme-avaliado {

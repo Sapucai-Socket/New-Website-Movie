@@ -15,7 +15,7 @@ function Footer() {
                 <a href="#">Nossas políticas</a>
               </li>
               <li>
-                <a href="#">Seja um nosso afiliado</a>
+                <a href="#">Seja um Crítico Verificado</a>
               </li>
             </ul>
           </div>
@@ -25,40 +25,27 @@ function Footer() {
               <li>
                 <a href="#">FAQ</a>
               </li>
-              <li>
-                <a href="#">Formas de pagamentos</a>
-              </li>
-              <li>
-                <a href="#">Como ser um colaborador?</a>
-              </li>
             </ul>
           </div>
           <div className="footer-col">
             <h4>Contato</h4>
             <ul>
               <li>
-                <a href="#">Equipe de devs</a>
+                <a href="https://github.com/Sapucai-Socket">Equipe de devs</a>
               </li>
               <li>
-                <a href="#">Equipe Juridica</a>
-              </li>
-              <li>
-                <a href="#">Equipe ADM</a>
+                <a href="https://github.com/Sapucai-Socket">Equipe ADM</a>
               </li>
             </ul>
           </div>
           <div className="footer-col">
             <h4>Nossas redes</h4>
             <div className="social-links">
-              <a href="#">
-                <i className="fab fa-youtube" />
-              </a>
-              <a href="https://github.com/sapucaisocket">
+
+              <a href="https://github.com/Sapucai-Socket">
                 <i className="fab fa-github" />
               </a>
-              <a href="#">
-                <i className="fab fa-linkedin in" />
-              </a>
+
             </div>
           </div>
         </div>
@@ -68,7 +55,7 @@ function Footer() {
         </li>
         <h4 className="copy">
           © Ciné. Feito por uma equipe de estudantes. Informações sobre os filmes
-          providenciadas pela oMDb.
+          providenciadas pela TMDB.
         </h4>
       </div>
     </footer>

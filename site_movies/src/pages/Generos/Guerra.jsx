@@ -131,9 +131,6 @@ const Guerra = () => {
                             <h1>
                                 Bem-Vindo! <a href="/perfil">{authUser.displayName}</a>. Aqui está o que temos assistido...
                             </h1>
-                            <h4>Nome: {authUser.displayName}</h4>
-                            <p>{`Conectado como ${authUser.email}`}</p>
-                            <button onClick={userSignOut}>Desconectar</button>
                         </div>
                     </>
                 ) : (

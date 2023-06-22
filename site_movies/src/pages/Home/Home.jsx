@@ -134,7 +134,6 @@ const Home = () => {
                             <h1>
                                 Bem-Vindo! <a href="/perfil">{authUser.displayName}</a>. Aqui está o que temos assistido...
                             </h1>
-                            <button onClick={userSignOut}>Desconectar</button>
                         </div>
                     </>
                 ) : (
@@ -156,7 +155,6 @@ const Home = () => {
                                 topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} type={0} carussel={1} />)}
                             <div className="miniCarousel">
                                 <div className="miniCarousel-inside">
-                                    <h2 id="populares-cabecalho">FILMES POPULARES</h2>
 
                                     <div className="posterMoviesPopulars">
                                         <Carousel
