@@ -1,0 +1,16 @@
+.not-found {
+    /*centraliza imagem*/
+    display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+  /*centraliza texto*/
+  text-align: center;
+  }
+  .not-found img{
+    width: 200px;
+  }
+  .not-found p{
+    color: darkgrey;
+    padding: 30px;
+  }
