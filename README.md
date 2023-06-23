@@ -3,6 +3,8 @@
 > Status: Em desenvolvimento  ⚠️
 ## ❗ Sobre o projeto
   Projeto dedicado para a construção de um site de reviews de filme, com a principal finalidade de avaliar filmes e séries que estão circulando a internet. Esse projeto, elaborado a partir de um grupo de estudantes do curso de informática na disciplica de Práticas Profissionais III no Instituto Federal do Ceará (IFCE), consiste em estabelecermos uma experiência de mercado, trabalhando em conjunto e desenvolvendo o projeto como uma verdadeira equipe. Para podermos  entrar a fundo na realidade do mercado, foi realizado uma série de estudos, sprints e gerenciamento de reuniões nos principais meios de comunicações que o atual mercado exige, elaborando a melhor estratégia possível para o desenvolvimento do projeto.
+
+  Veja ele em funcionamento! https://cine-ifce.web.app/
   
   ## 🔎 Equipe: 
 <div style="display: flex; margin: auto;"  align="center">
