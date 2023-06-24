@@ -55,7 +55,7 @@ const Movie = () => {
     getUserReviews();
 
     // ...
-  }, []);
+  }, [user]);
   useEffect(() => {
     const movieUrl = `${moviesURL}${id}?${apiKey}&language=pt-BR`;
     getMovie(movieUrl);
