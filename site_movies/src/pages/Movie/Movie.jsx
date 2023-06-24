@@ -110,14 +110,7 @@ const Movie = () => {
       navigate("/login");
       return;
     }
-
-    const updatedReview = { ...review };
-    updatedReview[id] = imageUrl + movie.poster_path;
-
-    const docRef = doc(db, "users", user.uid);
-    await setDoc(docRef, { review: updatedReview }, { merge: true });
     setIsOpen(true);
-    setReview(updatedReview);
   };
 
   function closeModal() {
@@ -144,7 +137,7 @@ const Movie = () => {
       setDoc(docRef, { review: updatedEnviarReview }, { merge: true });
       toast.success("Review enviado com sucesso!");
       setIsOpen(false);
-      setReview(updatedEnviarReview);
+      setReviews(updatedEnviarReview);
     } else {
       toast.error("Não é possivel enviar o seu review, pois o campo está vazio!");
     }
