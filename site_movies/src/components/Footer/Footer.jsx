@@ -51,7 +51,7 @@ function Footer() {
         </div>
         <li className="devBy">
           <h5>Desenvolvido por:</h5>
-          <img src="images/sapui" alt="" href="" />
+          <img src="images/Sapucaí_Logo.png" alt="" href="" />
         </li>
         <h4 className="copy">
           © Ciné. Feito por uma equipe de estudantes. Informações sobre os filmes
