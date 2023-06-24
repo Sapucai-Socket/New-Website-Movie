@@ -144,15 +144,9 @@ const Movie = () => {
       setDoc(docRef, { review: updatedEnviarReview }, { merge: true });
       toast.success("Review enviado com sucesso!");
       setIsOpen(false);
-      setFav(updatedEnviarReview);
+      setReview(updatedEnviarReview);
     } else {
-      const updatedEnviarReview = {};
-
-      const docRef = doc(db, "users", user.uid);
-      setDoc(docRef, { review: updatedEnviarReview }, { merge: true });
       toast.error("Não é possivel enviar o seu review, pois o campo está vazio!");
-      setIsOpen(true);
-      setFav(updatedEnviarReview);
     }
   };
   const updateFavoriteFilm = async (id, imageUrl, poster_path) => {
