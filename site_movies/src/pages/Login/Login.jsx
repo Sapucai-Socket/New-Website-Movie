@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithPopup, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from '../../firebase';
 import "react-toastify/dist/ReactToastify.css";
 
@@ -16,7 +16,28 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+
     const adcUsuarioViaGoogle = async (uid, displayName) => {
+        const userRef = doc(db, "users", uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!(userSnap.exists())) {
+            try {
+                await setDoc(doc(db, "users", uid), {
+                    id_usr: uid,
+                    nome_usr: displayName,
+                    descricao: '',
+                    fav: {},
+                    review: {}
+                });
+
+                console.log('Data added to Firestore with custom document ID:', uid);
+            } catch (error) {
+                console.error('Error adding data:', error);
+                toast.error('Falha no registro.');
+            }
+        }
+        /*
         try {
             await setDoc(doc(db, "users", uid), {
                 id_usr: uid,
@@ -31,6 +52,7 @@ function Login() {
             console.error('Error adding data:', error);
             toast.error('Falha no registro.');
         }
+        */
     }
 
     const handleSignIn = () => {
