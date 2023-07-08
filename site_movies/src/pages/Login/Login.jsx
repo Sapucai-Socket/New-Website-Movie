@@ -3,40 +3,44 @@ import { useNavigate } from "react-router-dom";
 import { getAuth, signInWithPopup, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from '../../firebase';
 import "react-toastify/dist/ReactToastify.css";
 
 const auth = getAuth();
 const googleProvider = new GoogleAuthProvider();
 
 function Login() {
-    const [user, setUser] = useState(null)
-    
+
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const adcUsuarioViaGoogle = async (uid, displayName) => {
+        try {
+            await setDoc(doc(db, "users", uid), {
+                id_usr: uid,
+                nome_usr: displayName,
+                descricao: '',
+                fav: {},
+                review: {}
+            });
+
+            console.log('Data added to Firestore with custom document ID:', uid);
+        } catch (error) {
+            console.error('Error adding data:', error);
+            toast.error('Falha no registro.');
+        }
+    }
+
     const handleSignIn = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
-                const loggedUser = result.user;
-                console.log(loggedUser);
-                setUser(loggedUser);
-                navigate('/'); // navigate to the Home page
+                adcUsuarioViaGoogle(result.user.uid, result.user.displayName);
+                navigate('/');
             })
             .catch(error => {
-                console.log(error);
-            });
-    }
-    
-
-
-    const handleSignOut = () => {
-        signOut(auth)
-            .then(() => {
-                console.log("Desconectado com sucesso!");
-                setUser(null);
-            })
-            .catch((error) => {
+                toast.error('Falha no login via Google.\nContate o adminstrador.');
                 console.log(error);
             });
     }

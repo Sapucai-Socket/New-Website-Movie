@@ -19,24 +19,16 @@ const Register = () => {
             await setDoc(doc(db, "users", uid), {
                 id_usr: uid,
                 nome_usr: nomeUsuario,
-                fav: {}
+                descricao: '',
+                fav: {},
+                review: {}
             });
 
             console.log('Data added to Firestore with custom document ID:', uid);
         } catch (error) {
             console.error('Error adding data:', error);
+            toast.error('Falha no registro.');
         }
-        /*
-        try {
-            const docRef = await addDoc(collection(db, "users"), {
-                id_usr: uid,
-                nome_usr: nomeUsuario
-            });
-            console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
-        */
     }
 
     const signUp = (e) => {

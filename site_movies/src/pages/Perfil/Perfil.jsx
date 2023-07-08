@@ -98,14 +98,6 @@ const Perfil = () => {
     }
   };
 
-  const handleGoogleLogin = async () => {
-    try {
-      await signInWithPopup(auth, googleAuthProvider);
-    } catch (error) {
-      console.log("Erro ao fazer login com o Google:", error);
-    }
-  };
-
   return (
     <div className="wrapperProfile">
       <ol className="userSection">
@@ -121,7 +113,7 @@ const Perfil = () => {
             <img src="icone-sair.png" className="svg-log-out" onClick={handleLogout}></img>
             <div>
               <h1 id="nomeUsuario">
-                {!authUser?.displayName ? nome : authUser.displayName}
+                {nome}
               </h1>
               <i id="descUsuario">{descricao}</i>
             </div>
