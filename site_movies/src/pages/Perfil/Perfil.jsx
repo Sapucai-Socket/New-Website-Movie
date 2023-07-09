@@ -15,26 +15,25 @@ import Rating from "react-rating-stars-component";
 
 const Perfil = () => {
   const [authUser, setAuthUser] = useState(null);
-  const [nome, setNome] = useState("");
-  const [descricao, setDescricao] = useState("");
   const [fav, setFav] = useState({});
   const [review, setReview] = useState({});
   const [favLoaded, setFavLoaded] = useState(false); // Estado para rastrear se os dados dos filmes favoritos foram buscados
   const navigate = useNavigate();
 
-  const getNomeUsuario = async (uid) => {
-    const docRef = doc(db, "users", uid);
-    const docSnap = await getDoc(docRef);
-    const name = docSnap.data().nome_usr;
-    setNome(name);
-  };
+  const [nome, setNome] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [fotoDePerfil, setFotoDePerfil] = useState('');
 
-  const getDescricao = async (uid) => {
-    const docRef = doc(db, "users", uid);
-    const docSnap = await getDoc(docRef);
-    const descricao = docSnap.data().descricao;
-    setDescricao(descricao);
-  };
+  const getUser = async (uid) => {
+    const userRef = doc(db, "users", uid);
+    const userSnap = await getDoc(userRef);
+    const currentUser = {
+      name: userSnap.data().nome_usr,
+      bio: userSnap.data().descricao
+    }
+    setNome(currentUser.name)
+    setDescricao(currentUser.bio)
+  }
 
   const getFav = async (uid) => {
     const docRef = doc(db, "users", uid);
@@ -60,8 +59,8 @@ const Perfil = () => {
       if (user) {
         const uid = user.uid;
         setAuthUser(user);
-        getNomeUsuario(uid);
-        getDescricao(uid);
+
+        getUser(uid);
 
         if (!favLoaded) {
           // Buscar os filmes favoritos somente se ainda não foram buscados
