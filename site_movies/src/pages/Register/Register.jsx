@@ -19,7 +19,8 @@ const Register = () => {
             await setDoc(doc(db, "users", uid), {
                 id_usr: uid,
                 nome_usr: nomeUsuario,
-                descricao: '',
+                foto: 'iconepadrao.png',
+                descricao: 'Olá! Este sou eu no Ciné.',
                 fav: {},
                 review: {}
             });

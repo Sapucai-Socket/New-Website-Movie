@@ -6,7 +6,7 @@ import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 import { collection, getDocs, setDoc, doc, onSnapshot } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { getAdditionalUserInfo} from "firebase/auth";
+import { getAdditionalUserInfo } from "firebase/auth";
 import { Link } from "react-router-dom";
 import { getDoc } from "firebase/firestore";
 import { Carousel } from "react-responsive-carousel";
@@ -14,10 +14,11 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Rating from "react-rating-stars-component";
 
 const Perfil = () => {
-  const [authUser, setAuthUser] = useState(null);
+  //const [authUser, setAuthUser] = useState(null);
   const [fav, setFav] = useState({});
   const [review, setReview] = useState({});
   const [favLoaded, setFavLoaded] = useState(false); // Estado para rastrear se os dados dos filmes favoritos foram buscados
+  const [favsQuantity, setFavsQuantity] = useState(null);
   const navigate = useNavigate();
 
   const [nome, setNome] = useState('');
@@ -27,71 +28,39 @@ const Perfil = () => {
   const getUser = async (uid) => {
     const userRef = doc(db, "users", uid);
     const userSnap = await getDoc(userRef);
+
     const currentUser = {
       name: userSnap.data().nome_usr,
-      bio: userSnap.data().descricao
+      bio: userSnap.data().descricao,
+      photo: userSnap.data().foto,
+      favorites: userSnap.data().fav,
+      reviews: userSnap.data().review
     }
+
     setNome(currentUser.name)
     setDescricao(currentUser.bio)
+    setFav(currentUser.favorites)
+    setFotoDePerfil(currentUser.photo)
+    setFavLoaded(true)
+    setFavsQuantity(Object.keys(currentUser.favorites).length);
+    setReview(currentUser.reviews);
   }
 
-  const getFav = async (uid) => {
-    const docRef = doc(db, "users", uid);
-    const docSnap = await getDoc(docRef);
-    const favData = docSnap.data().fav;
-    setFav(favData);
-    setFavLoaded(true); // Indicar que os dados dos filmes favoritos foram buscados
-  };
-
-  const getReview = async (uid) => {
-    const docRef = doc(db, "users", uid);
-    const docSnap = await getDoc(docRef);
-    const review = docSnap.data().review;
-    setReview(review);
-  };
-  const updateFav = async (updatedFav) => {
-    const docRef = doc(db, "users", authUser.uid);
-    await setDoc(docRef, { fav: updatedFav });
-  };
-
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;
-        setAuthUser(user);
-
-        getUser(uid);
-
-        if (!favLoaded) {
-          // Buscar os filmes favoritos somente se ainda não foram buscados
-          getFav(uid);
-          getReview(uid)
-        }
-
-        // Atualiza o filme favorito no banco de dados
-        const unsubscribeFav = onSnapshot(doc(db, "users", uid), (doc) => {
-          const favData = doc.data().fav;
-          setFav(favData);
-        });
-
-        return () => {
-          unsubscribeFav(); // Desfavorita os filmes
-        };
+        getUser(user.uid); // Get user
       } else {
         navigate("/login");
       }
     });
-
-    return () => {
-      unsubscribe();
-    };
-  }, [authUser, favLoaded]); // Trigger useEffect whenever authUser state or favLoaded state changes
+    console.log('oi')
+  },[favLoaded]);
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
       navigate("/");
-
     } catch (error) {
       console.log("Erro ao fazer logout:", error);
     }
@@ -103,11 +72,7 @@ const Perfil = () => {
         <li>
           <div className="profileContainer">
             <div className="pfpImage">
-              {authUser?.photoURL ? (
-                <img id="pfp" src={authUser.photoURL} alt="Perfil" />
-              ) : (
-                <img src="/iconepadrao.png" alt="png" id="userPadrao" />
-              )}
+                <img id="pfp" src={fotoDePerfil} alt="Perfil" />
             </div>
             <img src="icone-sair.png" className="svg-log-out" onClick={handleLogout}></img>
             <div>
@@ -121,7 +86,7 @@ const Perfil = () => {
         <li>
           <div className="userStat">
             <ol className="userStatOl">
-              <li><span className="quantity">{Object.keys(fav).length}</span></li>
+              <li><span className="quantity">{favsQuantity}</span></li>
               <li><span className="parameter">Filmes Registrados</span></li>
             </ol>
           </div>
@@ -179,7 +144,7 @@ const Perfil = () => {
                   </a>
                 </div>
               </li>
-              
+
               <li>
                 <div id="infos-avaliacao">
                   <span id="titulo-filme-avaliado">{title}</span>
@@ -193,13 +158,13 @@ const Perfil = () => {
                       activeColor="#ffd700"
                       emptyIcon={<i className="far fa-star"></i>}
                       filledIcon={<i className="fas fa-star"></i>}
-                    />                    
+                    />
                   </div>
                   <br />
                   <span id="review-filme-avaliado">
                     {review}
                   </span>
-                </div>                
+                </div>
               </li>
 
             </ol>

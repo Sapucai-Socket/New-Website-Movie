@@ -17,7 +17,7 @@ function Login() {
     const [password, setPassword] = useState('');
 
 
-    const adcUsuarioViaGoogle = async (uid, displayName) => {
+    const adcUsuarioViaGoogle = async (uid, displayName, photoURL) => {
         const userRef = doc(db, "users", uid);
         const userSnap = await getDoc(userRef);
 
@@ -26,11 +26,11 @@ function Login() {
                 await setDoc(doc(db, "users", uid), {
                     id_usr: uid,
                     nome_usr: displayName,
-                    descricao: '',
+                    foto: photoURL,
+                    descricao: 'Olá! Este sou eu no Ciné.',
                     fav: {},
                     review: {}
                 });
-
                 console.log('Data added to Firestore with custom document ID:', uid);
             } catch (error) {
                 console.error('Error adding data:', error);
@@ -58,7 +58,7 @@ function Login() {
     const handleSignIn = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
-                adcUsuarioViaGoogle(result.user.uid, result.user.displayName);
+                adcUsuarioViaGoogle(result.user.uid, result.user.displayName, result.user.photoURL);
                 navigate('/');
             })
             .catch(error => {
